@@ -1,0 +1,254 @@
+{
+    "mapZoom": 10,
+    "mapCenter": [8.86, 54.13],
+
+    "mapLayers": {
+        "BaseLayer": [
+            {
+                "groupName": "singleLayer",
+                "layerCollection": [
+                    {
+                        "url": "http://service.gdi-sh.de/WMS_SH_BDDcol_KF?",
+                        "layers": "DTK5col,DTK25col,DTK50col,DTK100col,UEK250,UEK600,UEK1500",
+                        "title": "layer_sh",
+                        "format": "image/jpeg",
+                        "SRS": "EPSG:4326",
+                        "version": "1.1.1"
+                    }
+                ]
+            },
+            {
+                "groupName": "singleLayer",
+                "layerCollection": [
+                    {
+                        "url": "http://sgx.geodatenzentrum.de/wms_topplus_web_open?",
+                        "layers": "web",
+                        "title": "TopPlus-Web-Open",
+                        "copyright": "BKG"
+                    }
+                ]
+            },
+            {
+                "groupName": "singleLayer",
+                "layerCollection": [
+                    {
+                        "url": "http://sg.geodatenzentrum.de/wms_webatlasde.light?",
+                        "layers": "webatlasde.light",
+                        "title": "layer_WebAtlasDE",
+                        "copyright": "BKG"
+                    }
+                ]
+            },
+            {
+                "groupName": "singleLayer",
+                "layerCollection": [
+                    {
+                        "url": "http://sg.geodatenzentrum.de/wms_dgm200?",
+                        "layers": "schummerung",
+                        "title": "layer_DGM200_Schummerung",
+                        "copyright": "BKG"
+                    }
+                ]
+            }
+        ],
+        "WMSLayer": [
+            {
+                "groupName": "Deiche Schleswig-Holstein",
+                "layerCollection": [
+                    {
+                        "url": "http://134.130.159.70:8080/geoserver/wfs?",
+                        "layers": "EarlyDike:EarlyDike_Deichlinie_lin_niv_gesamt_2011",
+                        "title": "GeoServer Web Map Service: lin_niv_gesamt_2011"
+                    }
+                ]
+            },
+            {
+                "groupName": "Umweltkarten Niedersachsen",
+                "layerCollection": [
+                    {
+                        "url": "https://www.umweltkarten-niedersachsen.de/arcgis/services/HWRM_wms/MapServer/WMSServer?",
+                        "layers": "Gewidmete_Deiche",
+                        "title": "HWRM: Gewidmete Deiche"
+                    },
+                    {
+                        "url": "https://www.umweltkarten-niedersachsen.de/arcgis/services/HWRM_wms/MapServer/WMSServer?",
+                        "layers": "Schutzduenen",
+                        "title": "HWRM: Schutzdünen"
+                    }
+                ]
+            },
+            {
+                "groupName": "singleLayer",
+                "layerCollection": [
+                    {
+                        "url": "http://sg.geodatenzentrum.de/wms_dgm200?",
+                        "layers": "relief",
+                        "title": "DGM200: Relief",
+                        "copyright": "attribution_BKG"
+                    }
+                ]
+            },
+            {
+                "groupName": "singleLayer",
+                "layerCollection": [
+                    {
+                        "url": "http://service.gdi-sh.de/WMS_SH_DOP40col_KF?",
+                        "layers": "SH_DOP40_1,SH_DOP40_2,SH_DOP40_3,SH_DOP40_4",
+                        "title": "SH_DOP40_2017, SH_DOP40_2016, SH_DOP40_2015, SH_DOP40_2014"
+                    }
+                ]
+            },
+            {
+                "groupName": "singleLayer",
+                "layerCollection": [
+                    {
+                        "url": "https://maps.dwd.de/geoserver/wms?",
+                        "layers": "dwd:BRD_1km_winddaten_10m",
+                        "title": "DWD GeoServer WMS: Fachlayer: Klima: Klimamonitoring: Referenzkarten: Mittlere jährliche Windgeschwindigkeiten in [ 0.1 m/s] von 10 m bis 100 m (in 10 m Stufen) über Grund für 1981-2000, GRID Felder (1 km)"
+                    }
+                ]
+            },
+            {
+                "groupName": "BSH",
+                "layerCollection": [
+                    {
+                        "url": "https://www.geoseaportal.de/wss/service/PredictionModel_WaterLevelNN/guest?",
+                        "layers": "UTC_23:00_01",
+                        "title": "BSH WMS PredictionModel WaterLevelNN: DayAfterTomorrow: UTC_23:00"
+                    },
+                    {
+                        "url": "https://www.geoseaportal.de/wss/service/PredictionModel_WaterLevelNN/guest?",
+                        "layers": "UTC_17:00_01",
+                        "title": "BSH WMS PredictionModel WaterLevelNN: DayAfterTomorrow: UTC_17:00"
+                    },
+                    {
+                        "url": "https://www.geoseaportal.de/wss/service/PredictionModel_WaterCurrent_Surface/guest?",
+                        "layers": "UTC_2300_01",
+                        "title": "BSH WMS PredictionModel WaterCurrent - Surface: Surface: dafter: UTC_2300"
+                    },
+                    {
+                        "url": "https://www.geoseaportal.de/wss/service/PredictionModel_WaterCurrent_Surface/guest?",
+                        "layers": "UTC_2300_02",
+                        "title": "BSH WMS PredictionModel WaterCurrent - Surface: Surface: tomorrow: UTC_2300"
+                    },
+                    {
+                        "url": "https://www.geoseaportal.de/wss/service/PredictionModel_WaterCurrent_Bottom/guest?",
+                        "layers": "UTC_2300_03",
+                        "title": "BSH WMS PredictionModel WaterCurrent - Bottom: Bottom: today: UTC_2300"
+                    }
+                ]
+            },
+            {
+                "groupName": "Bathymetrie",
+                "layerCollection": [
+                    {
+                        "url": "http://nibis.lbeg.de/net3/public/ogc.ashx?NODEID=295&",
+                        "layers": "L186",
+                        "title": "BSH (Gruppe): Bathymetrie der Nordsee (Äquidistanz 10m)"
+                    },
+                    {
+                        "url": "http://nibis.lbeg.de/net3/public/ogc.ashx?NODEID=295&",
+                        "layers": "L420",
+                        "title": "BSH (Gruppe): Bathymetrie der Nordsee (Äquidistanz 1m)"
+                    },
+                    {
+                        "url": "https://www.geoseaportal.de/wss/service/AufMod_Bathymetries/guest?",
+                        "layers": "102",
+                        "title": "AufMod_Bathymetries: GermanNorthSea_2012 [m]"
+                    }
+                ]
+            },
+            {
+                "groupName": "Marines Umweltmessnetz des BSH",
+                "layerCollection": [
+                    {
+                        "url": "https://www.geoseaportal.de/wss/service/MARNET_Marnet/guest?",
+                        "layers": "1",
+                        "title": "MARNET Data: Air: Relative Humidity"
+                    },
+                    {
+                        "url": "https://www.geoseaportal.de/wss/service/MARNET_Marnet/guest?",
+                        "layers": "2",
+                        "title": "MARNET Data: Air: Atmospheric Presure"
+                    },
+                    {
+                        "url": "https://www.geoseaportal.de/wss/service/MARNET_Marnet/guest?",
+                        "layers": "3",
+                        "title": "MARNET Data: Air: Wind velocity"
+                    },
+                    {
+                        "url": "https://www.geoseaportal.de/wss/service/MARNET_Marnet/guest?",
+                        "layers": "4",
+                        "title": "MARNET Data: Air: Temperature"
+                    }
+                ]
+            },
+            {
+                "groupName": "LKN-SH",
+                "layerCollection": [
+                    {
+                        "url": "http://mdi-sh.org/geoserver_lkn/lkn_zos/wms?",
+                        "layers": "szos108",
+                        "title": "Schleswig-Holsteinisches Wattenmeer: Layer: szos108 DOES NOT EXIST!"
+                    },
+                    {
+                        "url": "http://www.umweltdaten.landsh.de/atlas/script/lanuwms.php?",
+                        "layers": "pegel",
+                        "title": "WMS des Landwirtschaft- und Umweltatlas Schleswig-Holstein: pegel"
+                    }
+                ]
+            }
+        ],
+        "WFSLayer": [
+            { 
+                "groupName": "singleLayer",
+                "layerCollection": [
+                    {
+                        "url": "http://134.130.159.70:8080/geoserver/wfs?",
+                        "featureNS": "EarlyDike",
+                        "featureTypeName": "EarlyDike_Deichlinie_lin_niv_gesamt_2011",
+                        "featureNamespace": "EarlyDike",
+                        "format": "new ol.format.GML2()",
+                        "title": "EarlyDike_Deichlinie_lin_niv_gesamt_2011"
+                    }
+                ]
+            },
+            {
+                "groupName": "singleLayer",
+                "layerCollection": [
+                    {
+                        "url": "http://www.pegelonline.wsv.de/webservices/gis/aktuell/wfs?",
+                        "featureNS": "http://gkinfo.wsv.de",
+                        "featureTypeName": "waterlevels",
+                        "featureNamespace": "gk",
+                        "title": "GK-Waterlevels"
+                    }
+                ]
+            },
+            {
+                "groupName": "singleLayer",
+                "layerCollection": [
+                    {
+                        "url": "https://maps.dwd.de/geoserver/wfs?",
+                        "featureNS": "dwd",
+                        "featureTypeName": "Gewaesser",
+                        "featureNamespace": "dwd",
+                        "title": "DWD-Gewässer"
+                    }
+                ]
+            },
+            {
+                "groupName": "singleLayer",
+                "layerCollection": [
+                    {
+                        "url": "http://www.umweltdaten.landsh.de/atlas/script/lanuwfs.php?",
+                        "featureTypeName": "pegel",
+                        "featureNamespace": "",
+                        "format": "new ol.format.GML2()",
+                        "title": "Pegel Schleswig-Holstein"
+                    }
+                ]
+            }
+        ]
+    }
+}

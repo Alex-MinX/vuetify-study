@@ -1,0 +1,66 @@
+{
+    "mapZoom": 10,
+    "mapCenter": [8.86, 54.13],
+
+    "mapLayers": {
+        "BaseLayer": [
+            {
+                "groupName": "singleLayer",
+                "layerCollection": [
+                    {
+                        "type": "WMS",
+                        "url": "http://service.gdi-sh.de/WMS_SH_BDDcol_KF?",
+                        "layers": "DTK5col,DTK25col,DTK50col,DTK100col,UEK250,UEK600,UEK1500",
+                        "name": "layer_sh",
+                        "format": "image/jpeg",
+                        "SRS": "EPSG:4326",
+                        "version": "1.1.1"
+                    }
+                ]
+            },
+            {
+                "groupName": "singleLayer",
+                "layerCollection": [
+                    {
+                        "type": "WMS",
+                        "url": "http://sgx.geodatenzentrum.de/wms_topplus_web_open?",
+                        "layers": "web",
+                        "name": "TopPlus-Web-Open",
+                        "attributions": "attribution_BKG"
+                    }
+                ]
+            }
+        ],
+        "WMSLayer": [
+            {
+                "groupName": "Umweltkarten Niedersachsen",
+                "layerCollection": [
+                    {
+                        "type": "WMS",
+                        "url": "https://www.umweltkarten-niedersachsen.de/arcgis/services/HWRM_wms/MapServer/WMSServer?",
+                        "layers": "Gewidmete_Deiche",
+                        "name": "HWRM: Gewidmete Deiche"
+                    },
+                    {
+                        "type": "WMS",
+                        "url": "https://www.umweltkarten-niedersachsen.de/arcgis/services/HWRM_wms/MapServer/WMSServer?",
+                        "layers": "Schutzduenen",
+                        "name": "HWRM: Schutzdünen"
+                    }
+                ]
+            },
+            {
+                "groupName": "singleLayer",
+                "layerCollection": [
+                    {
+                        "type": "WMS",
+                        "url": "http://sg.geodatenzentrum.de/wms_dgm200?",
+                        "layers": "relief",
+                        "name": "DGM200: Relief",
+                        "attributions": "attribution_BKG"
+                    }
+                ]
+            }
+        ]
+    }
+}
