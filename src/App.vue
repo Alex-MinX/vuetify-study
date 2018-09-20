@@ -26,7 +26,6 @@
     </v-toolbar>
 
     <v-content>
-      <!--<HelloWorld/>-->
       <Map/>
     </v-content>
 

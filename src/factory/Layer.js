@@ -10,6 +10,7 @@ import KmlFormat from 'ol/format/KML';
 import VectorLayer from 'ol/layer/Vector';
 import VectorSource from 'ol/source/Vector';
 import {Group as OlGroup} from 'ol/layer.js';
+import Attribution from 'ol/control/Attribution';
 //import OlStyleDefs from '../style/OlStyleDefs'
 
 /**
@@ -58,6 +59,16 @@ export const LayerFactory = {
     return layerGroup;
   },
 
+  attributionBuild (AttrConfig) {
+    let attribution = '';
+    if (AttrConfig == "attribution_BKG") {
+      // in openlayers 5 it's totolly different to define an attribution than in ol3
+      attribution = '© <a target="_blank" href="http://www.bkg.bund.de">GeoBasis-DE / BKG </a> ' + (new Date(Date.now())).getFullYear()
+    }
+    return attribution;
+  },
+
+
   /**
    * Returns an OpenLayers layer instance due to given config.
    *
@@ -94,7 +105,9 @@ export const LayerFactory = {
    * @return {ol.layer.Tile} OL WMS layer instance
    */
   createWmsLayer (lConf) {
+    const self = this;
     const layer = new TileLayer({
+      preload: Infinity, // Load low-resolution tiles up to preload levels. 0 means no preloading
       name: lConf.name,
       lid: lConf.lid,
       //extent: lConf.extent,
@@ -108,7 +121,7 @@ export const LayerFactory = {
           'STYLES': new String('')
         },
         serverType: 'geoserver',
-        attributions: lConf.attributions
+        attributions: self.attributionBuild(lConf.attributions)
       })
     });
 
