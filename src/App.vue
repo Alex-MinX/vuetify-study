@@ -5,7 +5,33 @@
       fixed
       app
     >
-      
+
+      <v-toolbar>
+        <v-list>
+          <v-list-tile>
+            <v-list-tile-title class="title">
+              Layer Select
+            </v-list-tile-title>
+          </v-list-tile>
+        </v-list>
+      </v-toolbar>
+
+      <v-list dense class="pt-0">
+        <v-list-tile
+          v-for="item in items"
+          :key="item.title"
+          @click=""
+        >
+          <v-list-tile-action>
+            <v-icon>{{ item.icon }}</v-icon>
+          </v-list-tile-action>
+
+          <v-list-tile-content>
+            <v-list-tile-title>{{ item.title }}</v-list-tile-title>
+          </v-list-tile-content>
+        </v-list-tile>
+      </v-list>
+
     </v-navigation-drawer>
 
     <v-navigation-drawer
@@ -49,6 +75,12 @@ export default {
       rightDrawer: true,
       fixed: false,
       title: 'Early Dike',
+      items: [
+          { title: 'Basic Layer', icon: 'add' },
+          { title: 'WMS Layer', icon: 'add' },
+          { title: 'WFS Layer', icon: 'add' },
+
+      ],
     }
   }
 }
