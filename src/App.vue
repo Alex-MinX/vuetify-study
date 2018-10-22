@@ -7,29 +7,28 @@
     >
 
       <v-toolbar>
-        <v-list>
-          <v-list-tile>
-            <v-list-tile-title class="title">
-              Layer Select
-            </v-list-tile-title>
-          </v-list-tile>
-        </v-list>
+        <v-toolbar-title>Layer Select</v-toolbar-title>
       </v-toolbar>
 
-      <v-list dense class="pt-0">
-        <v-list-tile
+      <v-list>
+        <v-list-group
           v-for="item in items"
+          v-model="item.active"
           :key="item.title"
-          @click=""
+          :prepend-icon="item.icon"
+          no-action
         >
-          <v-list-tile-action>
-            <v-icon>{{ item.icon }}</v-icon>
-          </v-list-tile-action>
 
-          <v-list-tile-content>
-            <v-list-tile-title>{{ item.title }}</v-list-tile-title>
-          </v-list-tile-content>
-        </v-list-tile>
+          <v-list-tile slot="activator">
+            <v-list-tile-content>
+              <v-list-tile-title>{{ item.title }}</v-list-tile-title>
+            </v-list-tile-content>
+          </v-list-tile>
+
+          <!-- here we use the dynamic component -->
+          <component :is="item.selectComponent"></component>
+
+        </v-list-group>
       </v-list>
 
     </v-navigation-drawer>
@@ -63,11 +62,17 @@
 
 <script>
 import Map from './components/Map'
+import basicLayer from './components/layerSelect/basicLayer'
+import WMSLayer from './components/layerSelect/WMSLayer'
+import WFSLayer from './components/layerSelect/WFSLayer'
 
 export default {
   name: 'App',
   components: {
-    Map
+    Map,
+    basicLayer,
+    WMSLayer,
+    WFSLayer
   },
   data () {
     return {
@@ -76,12 +81,27 @@ export default {
       fixed: false,
       title: 'Early Dike',
       items: [
-          { title: 'Basic Layer', icon: 'add' },
-          { title: 'WMS Layer', icon: 'add' },
-          { title: 'WFS Layer', icon: 'add' },
-
+          {
+            icon: 'layers',
+            title: 'Basic Layer',
+            selectComponent: 'basicLayer',
+            active: true
+          },
+          {
+            icon: 'layers',
+            title: 'WMS Layer',
+            selectComponent: 'WMSLayer'
+          },
+          {
+            icon: 'layers',
+            title: 'WFS Layer',
+            selectComponent: 'WFSLayer'
+          }
       ],
     }
+  },
+  created () {
+
   }
 }
 </script>
