@@ -8,12 +8,14 @@
                 "groupName": "singleLayer",
                 "layerCollection": [
                     {
+                        "type": "WMS",
                         "url": "http://service.gdi-sh.de/WMS_SH_BDDcol_KF?",
                         "layers": "DTK5col,DTK25col,DTK50col,DTK100col,UEK250,UEK600,UEK1500",
-                        "title": "layer_sh",
+                        "name": "layer_sh",
                         "format": "image/jpeg",
                         "SRS": "EPSG:4326",
-                        "version": "1.1.1"
+                        "version": "1.1.1",
+                        "visible": true
                     }
                 ]
             },
@@ -21,10 +23,12 @@
                 "groupName": "singleLayer",
                 "layerCollection": [
                     {
+                        "type": "WMS",
                         "url": "http://sgx.geodatenzentrum.de/wms_topplus_web_open?",
                         "layers": "web",
-                        "title": "TopPlus-Web-Open",
-                        "copyright": "BKG"
+                        "name": "TopPlus-Web-Open",
+                        "attributions": "attribution_BKG",
+                        "visible": false
                     }
                 ]
             },
@@ -32,10 +36,13 @@
                 "groupName": "singleLayer",
                 "layerCollection": [
                     {
+                        "type": "WMS",
                         "url": "http://sg.geodatenzentrum.de/wms_webatlasde.light?",
                         "layers": "webatlasde.light",
                         "title": "layer_WebAtlasDE",
-                        "copyright": "BKG"
+                        "copyright": "BKG",
+                        "name": "WebAtlasDE",
+                        "visible": false
                     }
                 ]
             },
@@ -43,10 +50,13 @@
                 "groupName": "singleLayer",
                 "layerCollection": [
                     {
+                        "type": "WMS",
                         "url": "http://sg.geodatenzentrum.de/wms_dgm200?",
                         "layers": "schummerung",
                         "title": "layer_DGM200_Schummerung",
-                        "copyright": "BKG"
+                        "copyright": "BKG",
+                        "name": "DGM200 Schummerung",
+                        "visible": false
                     }
                 ]
             }

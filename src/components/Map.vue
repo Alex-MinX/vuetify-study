@@ -17,6 +17,8 @@ import { LayerFactory } from '../factory/Layer.js';
 import proj4 from 'proj4';
 import { proj4_def } from '../proj4_def/GIAGS_proj_defs.js';
 
+import { MapEventBus } from './../MapEventBus.js';
+
 export default {
     name: 'GIAGS-map',
     data () {
@@ -28,6 +30,9 @@ export default {
     },
     mounted () {
         this.map.setTarget(document.getElementById('GIAGS-map'));
+
+        // Send the event 'ol-map-mounted' with the OL map as payload
+        MapEventBus.$emit('ol-map-mounted', this.map);
 
         // make sure the map won't be strechted strange after being mounted
         window.setTimeout(() => {
@@ -58,6 +63,7 @@ export default {
         // add all the layers and layer groups at once
         this.map.getLayers().extend(layers);
         console.log('SRS: ', this.map.getView().getProjection());
+        MapEventBus.$emit('map-change', )
     },
     methods: {
         createLayers () {

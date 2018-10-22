@@ -32,6 +32,34 @@
                         "visible": false
                     }
                 ]
+            },
+            {
+                "groupName": "singleLayer",
+                "layerCollection": [
+                    {
+                        "type": "WMS",
+                        "url": "http://sg.geodatenzentrum.de/wms_webatlasde.light?",
+                        "layers": "webatlasde.light",
+                        "title": "layer_WebAtlasDE",
+                        "copyright": "BKG",
+                        "name": "WebAtlasDE",
+                        "visible": false
+                    }
+                ]
+            },
+            {
+                "groupName": "singleLayer",
+                "layerCollection": [
+                    {
+                        "type": "WMS",
+                        "url": "http://sg.geodatenzentrum.de/wms_dgm200?",
+                        "layers": "schummerung",
+                        "title": "layer_DGM200_Schummerung",
+                        "copyright": "BKG",
+                        "name": "DGM200 Schummerung",
+                        "visible": false
+                    }
+                ]
             }
         ],
         "WMSLayer": [
