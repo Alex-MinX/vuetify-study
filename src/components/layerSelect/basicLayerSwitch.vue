@@ -1,12 +1,18 @@
 <template>
     <v-list-tile @click="">
-        <v-list-tile-action>
-            <v-checkbox v-model="checkbox"></v-checkbox>
-        </v-list-tile-action>
-
+        <!--<v-list-tile-action>-->
+            <v-switch
+                v-model="checkbox"
+                :label="singlelayerinfo.name"
+                @click.native="layerSwitch"
+                color="primary"
+            ></v-switch>
+        <!--</v-list-tile-action>-->
+        <!--
         <v-list-tile-content @click="layerSwitch">
             {{ singlelayerinfo.name }}
         </v-list-tile-content>
+        -->
     </v-list-tile>
 </template>
 
@@ -19,8 +25,15 @@ export default {
     props:['singlelayerinfo'], // case-insensitive and don't use '-'
     data () {
         return {
-            checkbox: false
+            checkbox:""
         }
+    },
+    created () {
+        /* 
+         * change the status of the checkbox, if the layer is set to visible at the beginning,
+         * the checkbox must also be set to true
+         */
+        this.checkbox = this.singlelayerinfo.visible;
     },
     methods: {
         /**
@@ -31,11 +44,12 @@ export default {
 
         },
         layerSwitch: function () {
-            this.checkbox = !this.checkbox;
-            // TODO:
-            // figure out how to gain the access to map, which is defined in Map.vue
-            // with mixins and EventBus we already have the access to map, now deal with the select
-            console.log('testmap: ', this.map)
+            let self = this;
+            this.map.getLayers().forEach( function (layer) {
+                if (layer.get("name") == self.singlelayerinfo.name) {
+                    layer.setVisible(self.checkbox);
+                }
+            })
         }
     }
 }
