@@ -40,8 +40,7 @@
                         "type": "WMS",
                         "url": "http://sg.geodatenzentrum.de/wms_webatlasde.light?",
                         "layers": "webatlasde.light",
-                        "title": "layer_WebAtlasDE",
-                        "copyright": "BKG",
+                        "attributions": "attribution_BKG",
                         "name": "WebAtlasDE",
                         "visible": false
                     }
@@ -54,8 +53,7 @@
                         "type": "WMS",
                         "url": "http://sg.geodatenzentrum.de/wms_dgm200?",
                         "layers": "schummerung",
-                        "title": "layer_DGM200_Schummerung",
-                        "copyright": "BKG",
+                        "attributions": "attribution_BKG",
                         "name": "DGM200 Schummerung",
                         "visible": false
                     }
@@ -63,6 +61,37 @@
             }
         ],
         "WMSLayer": [
+            {
+                "groupName": "Deiche Schleswig-Holstein",
+                "layerCollection": [
+                    {
+                        "type": "WMS",
+                        "url": "http://134.130.159.70:8080/geoserver/wfs?",
+                        "layers": "EarlyDike:EarlyDike_Deichlinie_lin_niv_gesamt_2011",
+                        "name": "GeoServer Web Map Service: lin_niv_gesamt_2011",
+                        "visible": false
+                    }
+                ]
+            },
+            {
+                "groupName": "Umweltkarten Niedersachsen",
+                "layerCollection": [
+                    {
+                        "type": "WMS",
+                        "url": "https://www.umweltkarten-niedersachsen.de/arcgis/services/HWRM_wms/MapServer/WMSServer?",
+                        "layers": "Gewidmete_Deiche",
+                        "name": "HWRM: Gewidmete Deiche",
+                        "visible": false
+                    },
+                    {
+                        "type": "WMS",
+                        "url": "https://www.umweltkarten-niedersachsen.de/arcgis/services/HWRM_wms/MapServer/WMSServer?",
+                        "layers": "Schutzduenen",
+                        "name": "HWRM: Schutzdünen",
+                        "visible": false
+                    }
+                ]
+            },
             {
                 "groupName": "singleLayer",
                 "layerCollection": [
@@ -72,6 +101,30 @@
                         "layers": "relief",
                         "name": "DGM200: Relief",
                         "attributions": "attribution_BKG",
+                        "visible": false
+                    }
+                ]
+            },
+            {
+                "groupName": "singleLayer",
+                "layerCollection": [
+                    {
+                        "type": "WMS",
+                        "url": "http://service.gdi-sh.de/WMS_SH_DOP40col_KF?",
+                        "layers": "SH_DOP40_1,SH_DOP40_2,SH_DOP40_3,SH_DOP40_4",
+                        "name": "SH_DOP40_2014-2017",
+                        "visible": false
+                    }
+                ]
+            },
+            {
+                "groupName": "singleLayer",
+                "layerCollection": [
+                    {
+                        "type":"WMS",
+                        "url": "https://maps.dwd.de/geoserver/wms?",
+                        "layers": "dwd:BRD_1km_winddaten_10m",
+                        "name": "DWD Mittlere jährliche Windgeschwindigkeiten",
                         "visible": false
                     }
                 ]

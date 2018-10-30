@@ -1,28 +1,24 @@
 <template>
     <v-list-tile>
-        <!--<v-list-tile-action>-->
+
             <v-switch
                 v-model="checkbox"
                 :label="singlelayerinfo.name"
                 @click.native="layerSwitch"
                 color="primary"
             ></v-switch>
-        <!--</v-list-tile-action>-->
-        <!--
-        <v-list-tile-content @click="layerSwitch">
-            {{ singlelayerinfo.name }}
-        </v-list-tile-content>
-        -->
+
     </v-list-tile>
 </template>
 
 <script>
 import { Mapable } from './../../mixins/Mapable.js';
+import LayerGroup from 'ol/layer/Group';
 
 export default {
-    name: 'GIAGS-basicLayer-Switch',
+    name: 'GIAGS-singleLayer-Switch',
     mixins: [Mapable],
-    props:['singlelayerinfo'], // case-insensitive and don't use '-'
+    props: ['singlelayerinfo'], // case-insensitive and don't use '-'
     data () {
         return {
             checkbox:""
@@ -45,9 +41,21 @@ export default {
         },
         layerSwitch: function () {
             let self = this;
-            this.map.getLayers().forEach( function (layer) {
-                if (layer.get("name") == self.singlelayerinfo.name) {
-                    layer.setVisible(self.checkbox);
+            this.map.getLayers().forEach( function (layer, index_0) {
+                if (layer instanceof LayerGroup) {
+                    // handle layer group here
+                    layer.getLayers().forEach( function (singleLayer, index_1) {
+                        //console.log("layer-", index_0, "-", index_1, "-", singleLayer.get("name"), "-", singleLayer.getVisible());
+                        if (singleLayer.get("name") == self.singlelayerinfo.name) {
+                            singleLayer.setVisible(self.checkbox);
+                        }
+                    })
+                } else {
+                    // handle single layer here
+                    //console.log("layer-", index_0, "-", layer.get("name"), "-", layer.getVisible());
+                    if (layer.get("name") == self.singlelayerinfo.name) {
+                        layer.setVisible(self.checkbox);
+                    }
                 }
             })
         }

@@ -11,10 +11,10 @@
             </template>
 
             <template v-else>
-                <basicLayerSwitch
+                <singleLayerSwitch
                     :key="index"
                     v-bind:singlelayerinfo="layerGroup.layerCollection[0]"
-                ></basicLayerSwitch>
+                ></singleLayerSwitch>
             </template>
 
         </div>
@@ -22,31 +22,27 @@
 </template>
 
 <script>
-import basicLayerSwitch from './basicLayerSwitch'
+import singleLayerSwitch from './singleLayerSwitch'
 
 export default {
     name: 'GIAGS-basicLayer',
     components: {
-        basicLayerSwitch
+        singleLayerSwitch
     },
     data () {
         return {
             layerInfos: "",
-            checkbox: false
         }
     },
     methods: {
-        layerSwitch: function() {
-            console.log("basicLayer --> layerSwitch");
-        }
+
     },
     created () {
-            /*
-                * Get the layer information json object
-                * For object details see ths GIAGS_config.json
-            */
-            this.layerInfos = this.$GIAGSConfig.mapLayers;
-            console.log("layerInfos: ", this.layerInfos);
+        /*
+            * Get the layer information json object
+            * For object details see ths GIAGS_config.json
+        */
+        this.layerInfos = this.$GIAGSConfig.mapLayers;
     }
 }
 </script>
