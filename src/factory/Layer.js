@@ -117,8 +117,8 @@ export const LayerFactory = {
         url: lConf.url,
         params: {
           'LAYERS': lConf.layers,
-          'TILED': true,
-          'STYLES': new String('')
+          //'TILED': true, // a call to WMS with 'TILED': true supposes there is a GeoWebCache configured in GeoServer (and the failure confirms it has not been configured, as you do not own it, you have to avoid this option; otherwise, a good practice)
+          'STYLES': new String(''),
         },
         serverType: 'geoserver',
         attributions: self.attributionBuild(lConf.attributions)

@@ -57,12 +57,13 @@ export default {
                 }),
                 new Rotate() // use Alt+Shift+drag to rotate the map
             ],
+            //pixelRatio: 1
         });
         // create layers from config file (/static/GIAGS-config.json)
         const layers = this.createLayers();
         // add all the layers and layer groups at once
         this.map.getLayers().extend(layers);
-        console.log('SRS: ', this.map.getView().getProjection());
+        console.log('CRS: ', this.map.getView().getProjection());
         MapEventBus.$emit('map-change', )
     },
     methods: {

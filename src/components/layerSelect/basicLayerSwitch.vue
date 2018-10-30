@@ -1,5 +1,5 @@
 <template>
-    <v-list-tile @click="">
+    <v-list-tile>
         <!--<v-list-tile-action>-->
             <v-switch
                 v-model="checkbox"
