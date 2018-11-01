@@ -1,4 +1,5 @@
 <template>
+<div>
     <v-list-tile>
 
         <!--<v-list-tile-avatar>
@@ -28,12 +29,35 @@
         </v-list-tile-content>
 
         <v-list-tile-action>
-            <v-btn icon ripple>
-                <v-icon color="grey lighten-1">info</v-icon>
-            </v-btn>
+            <v-tooltip bottom>
+                <v-btn
+                    slot="activator"
+                    icon
+                    ripple
+                    @click="sliderShow = !sliderShow"
+                >
+                    <v-icon color="secondary">opacity</v-icon>
+                </v-btn>
+
+                <span>opacity</span>
+            </v-tooltip>
         </v-list-tile-action>
 
     </v-list-tile>
+
+    <v-list-tile
+        v-show="sliderShow"
+    >
+        <v-slider
+            v-model="sliderValue"
+            thumb-label
+            step="10"
+            ticks="always"
+            prepend-icon="settings_brightness"
+            @change="opacityChange"
+        ></v-slider>
+    </v-list-tile>
+</div>
 </template>
 
 <script>
@@ -46,7 +70,9 @@ export default {
     props: ['singlelayerinfo'], // case-insensitive and don't use '-'
     data () {
         return {
-            checkbox:""
+            checkbox:"",
+            sliderShow: false, // trun on/off the opacity slider
+            sliderValue: 100 // the initial value of the opacity should aways be 100
         }
     },
     created () {
@@ -80,6 +106,24 @@ export default {
                     //console.log("layer-", index_0, "-", layer.get("name"), "-", layer.getVisible());
                     if (layer.get("name") == self.singlelayerinfo.name) {
                         layer.setVisible(self.checkbox);
+                    }
+                }
+            })
+        },
+        opacityChange: function () {
+            var self = this;
+            this.map.getLayers().forEach( function (layer, index_0) {
+                if (layer instanceof LayerGroup) {
+                    // handle layer group here
+                    layer.getLayers().forEach( function (singleLayer, index_1) {
+                        if (singleLayer.get("name") == self.singlelayerinfo.name) {
+                            singleLayer.setOpacity(self.sliderValue / 100);
+                        }
+                    })
+                } else {
+                    // handle single layer here
+                    if (layer.get("name") == self.singlelayerinfo.name) {
+                        layer.setOpacity(self.sliderValue / 100);
                     }
                 }
             })
