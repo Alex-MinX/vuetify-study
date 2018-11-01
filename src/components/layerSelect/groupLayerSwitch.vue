@@ -2,6 +2,7 @@
     <v-list-group
         no-action
         sub-group
+        prepend-icon="arrow_drop_down_circle"
     >
 
         <v-list-tile slot="activator">

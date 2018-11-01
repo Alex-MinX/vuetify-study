@@ -1,12 +1,37 @@
 <template>
     <v-list-tile>
 
+        <!--<v-list-tile-avatar>
+            <v-icon>layers</v-icon>
+        </v-list-tile-avatar>-->
+        <v-list-tile-action>
             <v-switch
+                v-model="checkbox"
+                @click.native="layerSwitch"
+                color="primary"
+            ></v-switch>
+        </v-list-tile-action>
+
+        <v-list-tile-content
+            class="word-break"
+        >
+            {{ singlelayerinfo.name }}
+            <!--<v-switch
                 v-model="checkbox"
                 :label="singlelayerinfo.name"
                 @click.native="layerSwitch"
                 color="primary"
-            ></v-switch>
+            ></v-switch>-->
+
+            <!--<v-list-tile-sub-title v-html="singlelayerinfo.name"></v-list-tile-sub-title>-->
+
+        </v-list-tile-content>
+
+        <v-list-tile-action>
+            <v-btn icon ripple>
+                <v-icon color="grey lighten-1">info</v-icon>
+            </v-btn>
+        </v-list-tile-action>
 
     </v-list-tile>
 </template>
@@ -64,4 +89,7 @@ export default {
 </script>
 
 <style>
+.word-break {
+    word-break: break-word;
+}
 </style>

@@ -4,6 +4,7 @@
       v-model="drawer"
       fixed
       app
+      width="400"
     >
 
       <v-toolbar>

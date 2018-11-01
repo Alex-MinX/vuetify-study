@@ -128,6 +128,124 @@
                         "visible": false
                     }
                 ]
+            },
+            {
+                "groupName": "BSH",
+                "layerCollection": [
+                    {
+                        "type":"WMS",
+                        "url": "https://www.geoseaportal.de/wss/service/PredictionModel_WaterLevelNN/guest?",
+                        "layers": "UTC_23:00_01",
+                        "name": "WaterLevelNN: DayAfterTomorrow: UTC_23:00",
+                        "visible": false
+                    },
+                    {
+                        "type":"WMS",
+                        "url": "https://www.geoseaportal.de/wss/service/PredictionModel_WaterLevelNN/guest?",
+                        "layers": "UTC_17:00_01",
+                        "name": "WaterLevelNN: DayAfterTomorrow: UTC_17:00",
+                        "visible": false
+                    },
+                    {
+                        "type":"WMS",
+                        "url": "https://www.geoseaportal.de/wss/service/PredictionModel_WaterCurrent_Surface/guest?",
+                        "layers": "UTC_2300_01",
+                        "name": "WaterCurrent - Surface: Surface: dafter: UTC_2300",
+                        "visible": false
+                    },
+                    {
+                        "type":"WMS",
+                        "url": "https://www.geoseaportal.de/wss/service/PredictionModel_WaterCurrent_Surface/guest?",
+                        "layers": "UTC_2300_02",
+                        "name": "WaterCurrent - Surface: Surface: tomorrow: UTC_2300",
+                        "visible": false
+                    },
+                    {
+                        "type":"WMS",
+                        "url": "https://www.geoseaportal.de/wss/service/PredictionModel_WaterCurrent_Bottom/guest?",
+                        "layers": "UTC_2300_03",
+                        "name": "WaterCurrent - Bottom: Bottom: today: UTC_2300",
+                        "visible": false
+                    }
+                ]
+            },
+            {
+                "groupName": "Bathymetrie",
+                "layerCollection": [
+                    {
+                        "type":"WMS",
+                        "url": "http://nibis.lbeg.de/net3/public/ogc.ashx?NODEID=295&",
+                        "layers": "L186",
+                        "name": "BSH (Gruppe): Bathymetrie der Nordsee (Äquidistanz 10m)",
+                        "visible": false
+                    },
+                    {
+                        "type":"WMS",
+                        "url": "http://nibis.lbeg.de/net3/public/ogc.ashx?NODEID=295&",
+                        "layers": "L420",
+                        "name": "BSH (Gruppe): Bathymetrie der Nordsee (Äquidistanz 1m)",
+                        "visible": false
+                    },
+                    {
+                        "type":"WMS",
+                        "url": "https://www.geoseaportal.de/wss/service/AufMod_Bathymetries/guest?",
+                        "layers": "102",
+                        "name": "AufMod_Bathymetries: GermanNorthSea_2012 [m]",
+                        "visible": false
+                    }
+                ]
+            },
+            {
+                "groupName": "Marines Umweltmessnetz des BSH",
+                "layerCollection": [
+                    {
+                        "type":"WMS",
+                        "url": "https://www.geoseaportal.de/wss/service/MARNET_Marnet/guest?",
+                        "layers": "1",
+                        "name": "MARNET Data: Air: Relative Humidity",
+                        "visible": false
+                    },
+                    {
+                        "type":"WMS",
+                        "url": "https://www.geoseaportal.de/wss/service/MARNET_Marnet/guest?",
+                        "layers": "2",
+                        "name": "MARNET Data: Air: Atmospheric Presure",
+                        "visible": false
+                    },
+                    {
+                        "type":"WMS",
+                        "url": "https://www.geoseaportal.de/wss/service/MARNET_Marnet/guest?",
+                        "layers": "3",
+                        "name": "MARNET Data: Air: Wind velocity",
+                        "visible": false
+                    },
+                    {
+                        "type":"WMS",
+                        "url": "https://www.geoseaportal.de/wss/service/MARNET_Marnet/guest?",
+                        "layers": "4",
+                        "name": "MARNET Data: Air: Temperature",
+                        "visible": false
+                    }
+                ]
+            },
+            {
+                "groupName": "LKN-SH",
+                "layerCollection": [
+                    {
+                        "type":"WMS",
+                        "url": "http://mdi-sh.org/geoserver_lkn/lkn_zos/wms?",
+                        "layers": "szos108",
+                        "name": "Schleswig-Holsteinisches Wattenmeer: Layer: szos108",
+                        "visible": false
+                    },
+                    {
+                        "type":"WMS",
+                        "url": "http://www.umweltdaten.landsh.de/atlas/script/lanuwms.php?",
+                        "layers": "pegel",
+                        "name": "Landwirtschaft- und Umweltatlas Schleswig-Holstein: pegel",
+                        "visible": false
+                    }
+                ]
             }
         ]
     }
