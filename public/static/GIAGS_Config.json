@@ -247,6 +247,21 @@
                     }
                 ]
             }
+        ],
+        "WFSLayer": [
+            {
+                "groupName": "singleLayer",
+                "layerCollection": [
+                    {
+                        "type": "WFS",
+                        "url": "http://www.pegelonline.wsv.de/webservices/gis/aktuell/wfs?service=wfs&version=1.1.0&request=GetFeature&typeName=gk:waterlevels",
+                        "format": "GML2",
+                        "name": "GK-Waterlevels",
+                        "styleRef": "pegelIconStyle",
+                        "visible": true
+                    }
+                ]
+            }
         ]
     }
 }

@@ -3,15 +3,19 @@ import TileWmsSource from 'ol/source/TileWMS';
 import OsmSource from 'ol/source/OSM';
 import VectorTileLayer from 'ol/layer/VectorTile';
 import VectorTileSource from 'ol/source/VectorTile';
+
+import GML2 from 'ol/format/GML2';
 import MvtFormat from 'ol/format/MVT';
 import GeoJsonFormat from 'ol/format/GeoJSON';
 import TopoJsonFormat from 'ol/format/TopoJSON';
 import KmlFormat from 'ol/format/KML';
+
 import VectorLayer from 'ol/layer/Vector';
 import VectorSource from 'ol/source/Vector';
 import {Group as OlGroup} from 'ol/layer.js';
-import Attribution from 'ol/control/Attribution';
-//import OlStyleDefs from '../style/OlStyleDefs'
+//import Attribution from 'ol/control/Attribution';
+import OlStyleDefs from '../style/GIAGS_OlstyleDefs.js';
+import {bbox as bboxStrategy} from 'ol/loadingstrategy.js';
 
 /**
  * Factory, which creates OpenLayers layer/layerGroup instances according to a given config
@@ -24,6 +28,7 @@ export const LayerFactory = {
    * @type {Object}
    */
   formatMapping: {
+    'GML2': GML2,
     'MVT': MvtFormat,
     'GeoJSON': GeoJsonFormat,
     'TopoJSON': TopoJsonFormat,
@@ -89,7 +94,7 @@ export const LayerFactory = {
       return this.createXyzLayer(lConf);
     } else if (lConf.type === 'OSM') {
       return this.createOsmLayer(lConf);
-    } else if (lConf.type === 'VECTOR') {
+    } else if (lConf.type === 'VECTOR' || lConf.type === 'WFS') {
       return this.createVectorLayer(lConf);
     } else if (lConf.type === 'VECTORTILE') {
       return this.createVectorTileLayer(lConf);
@@ -171,18 +176,82 @@ export const LayerFactory = {
    * @return {ol.layer.Vector} OL vector layer instance
    */
   createVectorLayer (lConf) {
+    console.log("durch createVectorLayer");
+    console.log("lConf.name: ", lConf.name, " | ", "lConf.visible: ", lConf.visible, " | ", "lConf.opacity: ", lConf.opacity, " | ", "lConf.url: ", lConf.url);
+    console.log("lConf.format: ", lConf.format, " | ", "this.formatMapping[lConf.format]: ", this.formatMapping[lConf.format]);
+    console.log("lConf.formatConfig: ", lConf.formatConfig);
+    console.log("strategy: ", bboxStrategy);
+    console.log("lConf.styleRef: ", lConf.styleRef);
+    console.log("style: ", OlStyleDefs["test2"]);
+    var vectorSource = new VectorSource({
+      format: new this.formatMapping[lConf.format](lConf.formatConfig),
+      loader: function(extent, resolution, projection) {
+        console.log("extent: ", extent);
+        //var proj = projection.getCode();
+        var url = lConf.url;
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', url);
+        var onError = function() {
+          vectorSource.removeLoadedExtent(extent);
+        }
+        xhr.onerror = onError;
+        xhr.onload = function() {
+          if (xhr.status == 200) {
+            vectorSource.addFeatures(
+                vectorSource.getFormat().readFeatures(xhr.responseText));
+          } else {
+            onError();
+          }
+        }
+        xhr.send();
+      }
+    })
+
     const vectorLayer = new VectorLayer({
       name: lConf.name,
-      lid: lConf.lid,
-      extent: lConf.extent,
-      visible: lConf.visible,
-      opacity: lConf.opacity,
-      source: new VectorSource({
-        url: lConf.url,
+      //lid: lConf.lid,
+      //extent: lConf.extent,
+      //visible: lConf.visible,
+      //opacity: lConf.opacity,
+      source: vectorSource,
+      /*
+      new VectorSource({
         format: new this.formatMapping[lConf.format](lConf.formatConfig),
-        attributions: lConf.attributions
-      }),
-      style: OlStyleDefs[lConf.styleRef]
+        loader: function(extent, resolution, projection) {
+          console.log("extent: ", extent);
+          //var proj = projection.getCode();
+          var url = lConf.url;
+          var xhr = new XMLHttpRequest();
+          xhr.open('GET', url);
+          var onError = function() {
+            vectorSource.removeLoadedExtent(extent);
+          }
+          xhr.onerror = onError;
+          xhr.onload = function() {
+            if (xhr.status == 200) {
+              vectorSource.addFeatures(
+                  vectorSource.getFormat().readFeatures(xhr.responseText));
+            } else {
+              onError();
+            }
+          }
+          xhr.send();
+        },
+        //format: new GeoJsonFormat(),
+        /*url: function (extent) {
+          var url = lConf.url + '&bbox=' + extent.join(',') + ',EPSG:4326';
+          return url;
+        }*/
+        /*url: function(extent) {
+          return 'https://ahocevar.com/geoserver/wfs?service=WFS&' +
+              'version=1.1.0&request=GetFeature&typename=osm:water_areas&' +
+              'outputFormat=application/json&srsname=EPSG:3857&' +
+              'bbox=' + extent.join(',') + ',EPSG:3857';
+        }*/
+        //attributions: lConf.attributions,
+        //strategy: bboxStrategy
+      //}),
+      style: OlStyleDefs["test2"]
     });
 
     return vectorLayer;

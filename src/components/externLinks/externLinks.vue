@@ -1,8 +1,8 @@
 <template>
     <div>
         <v-list-tile
-            v-for="link in links"
-            :key="link"
+            v-for="(link, index) in links"
+            :key="index"
         >
 
             <a

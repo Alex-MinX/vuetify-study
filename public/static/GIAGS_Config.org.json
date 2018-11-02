@@ -231,7 +231,11 @@
                         "featureNS": "http://gkinfo.wsv.de",
                         "featureTypeName": "waterlevels",
                         "featureNamespace": "gk",
-                        "title": "GK-Waterlevels"
+                        "title": "GK-Waterlevels",
+                        "formatConfig": {
+                            "featureNS": "http://gkinfo.wsv.de",
+                            "featureType": "gk:waterlevels"
+                        }
                     }
                 ]
             },

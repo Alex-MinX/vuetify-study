@@ -65,6 +65,11 @@ export default {
         this.map.getLayers().extend(layers);
         console.log('CRS: ', this.map.getView().getProjection());
         MapEventBus.$emit('map-change', )
+
+        // test
+        this.map.getLayers().forEach( function(layer, index) {
+            console.log(index + " | " + layer.get("name"));
+        })
     },
     methods: {
         createLayers () {
