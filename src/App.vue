@@ -8,7 +8,7 @@
     >
 
       <v-toolbar>
-        <v-toolbar-title>Layer Select</v-toolbar-title>
+        <v-toolbar-title>Layer options</v-toolbar-title>
       </v-toolbar>
 
       <v-list>
@@ -39,6 +39,7 @@
       fixed
       right
       app
+      width="400"
     >
 
       <v-list>
@@ -62,13 +63,18 @@
         </v-list-group>
       </v-list>
 
+      <partnerLogos></partnerLogos>
+
     </v-navigation-drawer>
 
     <v-toolbar
       app
+      dark
+      color="primary"
     >
       <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
-      <v-toolbar-title v-text="title"></v-toolbar-title>
+      <!--<v-toolbar-title v-text="title"></v-toolbar-title>-->
+      <img src="static/Logos/logo_earlydike.png" alt="Early_Dike_logo" height="65%">
       <v-spacer></v-spacer>
       <v-toolbar-side-icon @click.stop="rightDrawer = !rightDrawer"></v-toolbar-side-icon>
     </v-toolbar>
@@ -78,7 +84,7 @@
     </v-content>
 
     <v-footer :fixed="fixed" app>
-      <span>&copy; 2018</span>
+      <span>&copy; 2018 Min Xie All Rights Reserved</span>
     </v-footer>
   </v-app>
 </template>
@@ -89,6 +95,7 @@ import basicLayer from './components/layerSelect/basicLayer'
 import WMSLayer from './components/layerSelect/WMSLayer'
 import WFSLayer from './components/layerSelect/WFSLayer'
 import externLinks from './components/externLinks/externLinks'
+import partnerLogos from './components/partnerLogos/partnerLogos'
 
 export default {
   name: 'App',
@@ -97,7 +104,8 @@ export default {
     basicLayer,
     WMSLayer,
     WFSLayer,
-    externLinks
+    externLinks,
+    partnerLogos
   },
   data () {
     return {
