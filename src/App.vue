@@ -13,7 +13,7 @@
 
       <v-list>
         <v-list-group
-          v-for="item in items"
+          v-for="item in items_leftNavi"
           v-model="item.active"
           :key="item.title"
           :prepend-icon="item.icon"
@@ -40,6 +40,28 @@
       right
       app
     >
+
+      <v-list>
+        <v-list-group
+          v-for="item in items_rightNavi"
+          v-model="item.active"
+          :key="item.title"
+          :prepend-icon="item.icon"
+          no-action
+        >
+
+          <v-list-tile slot="activator">
+            <v-list-tile-content>
+              <v-list-tile-title>{{ item.title }}</v-list-tile-title>
+            </v-list-tile-content>
+          </v-list-tile>
+
+          <!-- here we use the dynamic component -->
+          <component :is="item.selectComponent"></component>
+
+        </v-list-group>
+      </v-list>
+
     </v-navigation-drawer>
 
     <v-toolbar
@@ -66,6 +88,7 @@ import Map from './components/Map'
 import basicLayer from './components/layerSelect/basicLayer'
 import WMSLayer from './components/layerSelect/WMSLayer'
 import WFSLayer from './components/layerSelect/WFSLayer'
+import externLinks from './components/externLinks/externLinks'
 
 export default {
   name: 'App',
@@ -73,7 +96,8 @@ export default {
     Map,
     basicLayer,
     WMSLayer,
-    WFSLayer
+    WFSLayer,
+    externLinks
   },
   data () {
     return {
@@ -81,7 +105,7 @@ export default {
       rightDrawer: true,
       fixed: false,
       title: 'Early Dike',
-      items: [
+      items_leftNavi: [
           {
             icon: 'layers',
             title: 'Basic Layer',
@@ -99,6 +123,14 @@ export default {
             selectComponent: 'WFSLayer'
           }
       ],
+      items_rightNavi: [
+        {
+          icon: 'link',
+          title: 'External links',
+          selectComponent: 'externLinks',
+          active: true
+        }
+      ]
     }
   },
   created () {
