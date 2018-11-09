@@ -179,79 +179,45 @@ export const LayerFactory = {
    * @return {ol.layer.Vector} OL vector layer instance
    */
   createVectorLayer (lConf) {
-    console.log("durch createVectorLayer");
-    console.log("lConf.name: ", lConf.name, " | ", "lConf.visible: ", lConf.visible, " | ", "lConf.opacity: ", lConf.opacity, " | ", "lConf.url: ", lConf.url);
-    console.log("lConf.format: ", lConf.format, " | ", "this.formatMapping[lConf.format]: ", this.formatMapping[lConf.format]);
-    console.log("lConf.formatConfig: ", lConf.formatConfig);
-    console.log("strategy: ", bboxStrategy);
-    console.log("lConf.styleRef: ", lConf.styleRef);
-    console.log("style: ", OlStyleDefs[lConf.styleRef]);
     var vectorSource = new VectorSource({
-      //format: new this.formatMapping[lConf.format](lConf.formatConfig),
-      format: new GML3(),
-      //format: new GeoJsonFormat(),
+      format: new this.formatMapping[lConf.format](lConf.formatConfig),
+
       /*
+       * Medthode 1 : if use the url, the format must be set. Or we can use the loader,
+       * which has more functions but also more complex
+       */
       url: function(extent) {
-        return 'https://ahocevar.com/geoserver/wfs?service=WFS&' +
-            'version=1.1.0&request=GetFeature&typename=osm:water_areas&' +
-            'outputFormat=application/json&srsname=EPSG:3857&maxFeatures=500&' +
-            'bbox=' + extent.join(',') + ',EPSG:3857';
-      },*/
-      
-      url: function(extent) {
-        return 'http://www.pegelonline.wsv.de/webservices/gis/aktuell/wfs?' + 
-              'service=wfs&version=1.1.0&request=GetFeature&typeName=gk:waterlevels&' + 
-              'outputFormat=GML3&maxFeatures=5000&srsname=EPSG:25832&' // the EPSG here is the EPSG you want to get from the features coordinates
-              //'bbox=' + extent.join(',') + ',EPSG:4326';
+        let FRConf = lConf.featureRequestConf;
+        let url = FRConf.url;
+        url += 'service=wfs&request=GetFeature&'; // this part is always the same for all the WFS layers
+        url += FRConf.version ? 'version=' + FRConf.version + '&' : '';
+        url += FRConf.typeName ? 'typeName=' + FRConf.typeName + '&' : '';
+        url += FRConf.outputFormat ? 'outputFormat=' + FRConf.outputFormat + '&' : '';
+        url += FRConf.maxFeatures ? 'maxFeatures=' + FRConf.maxFeatures + '&' : '';
+        url += FRConf.srsname ? 'srsname=' + FRConf.srsname : '';
+        console.log("getFeatureUrl: ", url);
+        return url;
       }
-      //url: "http://www.pegelonline.wsv.de/webservices/gis/aktuell/wfs?service=wfs&version=1.1.0&request=GetFeature&typeName=gk:waterlevels&outputFormat=GML3&maxFeatures=50"
-      //url: "http://www.pegelonline.wsv.de/webservices/gis/aktuell/wfs?service=wfs&version=1.1.0&request=GetFeature&typeName=gk:waterlevels&outputFormat=GML3",
+
+      /* 
+       * Medthode 2 : the loader could also be an option, good for pre-processing the features if 
+       * necessary
+       */
+
+      /*
+      loader: function(extent, resolution, projection) {
+        console.log("lconfcheck: ", lConf);
+      }
+      */
     })
 
     const vectorLayer = new VectorLayer({
       name: lConf.name,
       //lid: lConf.lid,
-      //extent: lConf.extent,
-      //visible: lConf.visible,
-      //opacity: lConf.opacity,
+      extent: lConf.extent,
+      visible: lConf.visible,
+      opacity: lConf.opacity,
       source: vectorSource,
-      /*
-      new VectorSource({
-        format: new this.formatMapping[lConf.format](lConf.formatConfig),
-        loader: function(extent, resolution, projection) {
-          console.log("extent: ", extent);
-          //var proj = projection.getCode();
-          var url = lConf.url;
-          var xhr = new XMLHttpRequest();
-          xhr.open('GET', url);
-          var onError = function() {
-            vectorSource.removeLoadedExtent(extent);
-          }
-          xhr.onerror = onError;
-          xhr.onload = function() {
-            if (xhr.status == 200) {
-              vectorSource.addFeatures(
-                  vectorSource.getFormat().readFeatures(xhr.responseText));
-            } else {
-              onError();
-            }
-          }
-          xhr.send();
-        },
-        //format: new GeoJsonFormat(),
-        /*url: function (extent) {
-          var url = lConf.url + '&bbox=' + extent.join(',') + ',EPSG:4326';
-          return url;
-        }*/
-        /*url: function(extent) {
-          return 'https://ahocevar.com/geoserver/wfs?service=WFS&' +
-              'version=1.1.0&request=GetFeature&typename=osm:water_areas&' +
-              'outputFormat=application/json&srsname=EPSG:3857&' +
-              'bbox=' + extent.join(',') + ',EPSG:3857';
-        }*/
-        //attributions: lConf.attributions,
-        //strategy: bboxStrategy
-      //}),
       style: OlStyleDefs[lConf.styleRef]
     });
 
