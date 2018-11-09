@@ -10,13 +10,25 @@
                 "layerCollection": [
                     {
                         "type": "WMS",
+                        "url": "http://ows.terrestris.de/osm/service?",
+                        "layers": "OSM-WMS",
+                        "visible": true,
+                        "name": "OpenStreetMap"
+                    }
+                ]
+            },
+            {
+                "groupName": "singleLayer",
+                "layerCollection": [
+                    {
+                        "type": "WMS",
                         "url": "http://service.gdi-sh.de/WMS_SH_BDDcol_KF?",
                         "layers": "DTK5col,DTK25col,DTK50col,DTK100col,UEK250,UEK600,UEK1500",
                         "name": "layer_sh",
                         "format": "image/jpeg",
                         "SRS": "EPSG:4326",
                         "version": "1.1.1",
-                        "visible": true
+                        "visible": false
                     }
                 ]
             },
@@ -255,7 +267,7 @@
                     {
                         "type": "WFS",
                         "url": "http://www.pegelonline.wsv.de/webservices/gis/aktuell/wfs?service=wfs&version=1.1.0&request=GetFeature&typeName=gk:waterlevels",
-                        "format": "GML2",
+                        "format": "GML3",
                         "name": "GK-Waterlevels",
                         "styleRef": "pegelIconStyle",
                         "visible": true

@@ -1,5 +1,8 @@
 <template>
+<div>
     <div class="map" id="GIAGS-map"></div>
+    <v-btn @click="getFeatures">getFeatures</v-btn>
+</div>
 </template>
 
 <script>
@@ -69,6 +72,10 @@ export default {
         // test
         this.map.getLayers().forEach( function(layer, index) {
             console.log(index + " | " + layer.get("name"));
+            if (layer.get("name") == "GK-Waterlevels") {
+                console.log("Vector Layer added");
+                console.log("Features: ", layer.getSource().getFeatures());
+            }
         })
     },
     methods: {
@@ -84,6 +91,17 @@ export default {
                 layers.push(...SingleServiceLayerGroup);
             })
             return layers;
+        },
+        getFeatures () {
+            console.log('test: getFeatures');
+        // test
+        this.map.getLayers().forEach( function(layer, index) {
+                        console.log(index + " | " + layer.get("name"));
+
+            if (layer.get("name") == "GK-Waterlevels") {
+                console.log("Features: ", layer.getSource().getFeatures());
+            }
+        })
         }
     }
 }

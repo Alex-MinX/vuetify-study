@@ -5,10 +5,12 @@ import VectorTileLayer from 'ol/layer/VectorTile';
 import VectorTileSource from 'ol/source/VectorTile';
 
 import GML2 from 'ol/format/GML2';
+import GML3 from 'ol/format/GML3';
 import MvtFormat from 'ol/format/MVT';
 import GeoJsonFormat from 'ol/format/GeoJSON';
 import TopoJsonFormat from 'ol/format/TopoJSON';
 import KmlFormat from 'ol/format/KML';
+import WFS from 'ol/format/WFS';
 
 import VectorLayer from 'ol/layer/Vector';
 import VectorSource from 'ol/source/Vector';
@@ -28,6 +30,7 @@ export const LayerFactory = {
    * @type {Object}
    */
   formatMapping: {
+    'GML3': GML3,
     'GML2': GML2,
     'MVT': MvtFormat,
     'GeoJSON': GeoJsonFormat,
@@ -182,29 +185,27 @@ export const LayerFactory = {
     console.log("lConf.formatConfig: ", lConf.formatConfig);
     console.log("strategy: ", bboxStrategy);
     console.log("lConf.styleRef: ", lConf.styleRef);
-    console.log("style: ", OlStyleDefs["test2"]);
+    console.log("style: ", OlStyleDefs[lConf.styleRef]);
     var vectorSource = new VectorSource({
-      format: new this.formatMapping[lConf.format](lConf.formatConfig),
-      loader: function(extent, resolution, projection) {
-        console.log("extent: ", extent);
-        //var proj = projection.getCode();
-        var url = lConf.url;
-        var xhr = new XMLHttpRequest();
-        xhr.open('GET', url);
-        var onError = function() {
-          vectorSource.removeLoadedExtent(extent);
-        }
-        xhr.onerror = onError;
-        xhr.onload = function() {
-          if (xhr.status == 200) {
-            vectorSource.addFeatures(
-                vectorSource.getFormat().readFeatures(xhr.responseText));
-          } else {
-            onError();
-          }
-        }
-        xhr.send();
+      //format: new this.formatMapping[lConf.format](lConf.formatConfig),
+      format: new GML3(),
+      //format: new GeoJsonFormat(),
+      /*
+      url: function(extent) {
+        return 'https://ahocevar.com/geoserver/wfs?service=WFS&' +
+            'version=1.1.0&request=GetFeature&typename=osm:water_areas&' +
+            'outputFormat=application/json&srsname=EPSG:3857&maxFeatures=500&' +
+            'bbox=' + extent.join(',') + ',EPSG:3857';
+      },*/
+      
+      url: function(extent) {
+        return 'http://www.pegelonline.wsv.de/webservices/gis/aktuell/wfs?' + 
+              'service=wfs&version=1.1.0&request=GetFeature&typeName=gk:waterlevels&' + 
+              'outputFormat=GML3&maxFeatures=5000&srsname=EPSG:25832&' // the EPSG here is the EPSG you want to get from the features coordinates
+              //'bbox=' + extent.join(',') + ',EPSG:4326';
       }
+      //url: "http://www.pegelonline.wsv.de/webservices/gis/aktuell/wfs?service=wfs&version=1.1.0&request=GetFeature&typeName=gk:waterlevels&outputFormat=GML3&maxFeatures=50"
+      //url: "http://www.pegelonline.wsv.de/webservices/gis/aktuell/wfs?service=wfs&version=1.1.0&request=GetFeature&typeName=gk:waterlevels&outputFormat=GML3",
     })
 
     const vectorLayer = new VectorLayer({
@@ -251,7 +252,7 @@ export const LayerFactory = {
         //attributions: lConf.attributions,
         //strategy: bboxStrategy
       //}),
-      style: OlStyleDefs["test2"]
+      style: OlStyleDefs[lConf.styleRef]
     });
 
     return vectorLayer;

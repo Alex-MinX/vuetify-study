@@ -46,7 +46,6 @@ export default {
             * For object details see ths GIAGS_config.json
         */
         this.layerInfos = this.$GIAGSConfig.mapLayers;
-        console.log("this.layerInfos.WMSLayer: ", this.layerInfos.WMSLayer);
     }
 }
 </script>

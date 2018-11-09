@@ -22,22 +22,30 @@ export default {
     })
   }),
   */
- /*
+  test3: new OlStyle({
+    image: new CircleStyle({
+      radius: 20,
+      fill: new OlFill({color: 'black'}),
+      stroke: new OlStroke({
+        color: [255,0,0], width: 10
+      })
+    })
+  }),
   pegelIconStyle: new OlStyle({
-    image: new Icon /** @type {module:ol/style/Icon~Options} */ /*({
+    image: new Icon /** @type {module:ol/style/Icon~Options} */ ({
       opacity: 0.80,
       src: 'static/Icons/Pegel.png'
     })
-  }),*/
+  }),
   test1: new OlStyle({
     stroke: new OlStroke({
         color: 'rgba(0, 0, 255, 1.0)',
-        width: 10,
+        width: 50,
     })
   }),
   test2: new OlStyle({
     image: new CircleStyle({
-      radius: 10,
+      radius: 50,
       fill: new OlFill({
         color: 'orange'
       })
