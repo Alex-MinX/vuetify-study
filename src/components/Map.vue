@@ -93,15 +93,25 @@ export default {
             return layers;
         },
         getFeatures () {
-            console.log('test: getFeatures');
-        // test
-        this.map.getLayers().forEach( function(layer, index) {
-                        console.log(index + " | " + layer.get("name"));
+            // test1
+            //console.log('test: getFeatures');
+            /*
+            this.map.getLayers().forEach( function(layer, index) {
+                            console.log(index + " | " + layer.get("name"));
 
-            if (layer.get("name") == "GK-Waterlevels") {
-                console.log("Features: ", layer.getSource().getFeatures());
-            }
-        })
+                if (layer.get("name") == "GK-Waterlevels") {
+                    console.log("Features: ", layer.getSource().getFeatures());
+                }
+            })
+            */
+            // test2
+            this.$http.get('/static/proxy.php').then(response => {
+                // success
+                console.log("oh! success!");
+            }, response => {
+                // error
+                console.log("oh! error!");
+            });
         }
     }
 }

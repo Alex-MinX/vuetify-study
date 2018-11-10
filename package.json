@@ -11,6 +11,7 @@
     "ol": "^5.2.0",
     "proj4": "^2.5.0",
     "vue": "^2.5.17",
+    "vue-resource": "^1.5.1",
     "vuetify": "^1.0.19"
   },
   "devDependencies": {
