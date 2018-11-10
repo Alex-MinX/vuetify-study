@@ -276,6 +276,44 @@
                         "format": "GML3",
                         "name": "GK-Waterlevels",
                         "styleRef": "pegelIconStyle",
+                        "visible": false
+                    }
+                ]
+            },
+            {
+                "groupName": "singleLayer",
+                "layerCollection": [
+                    {
+                        "type": "WFS",
+                        "featureRequestConf": {
+                            "url": "https://maps.dwd.de/geoserver/wfs?",
+                            "version": "1.1.0",
+                            "typeName": "dwd:Gewaesser",
+                            "outputFormat": "GML3",
+                            "srsname": "EPSG:25832"
+                        },
+                        "format": "GML3",
+                        "name": "DWD-Gewässer",
+                        "styleRef": "lineStyleDeepskyblue",
+                        "visible": false
+                    }
+                ]
+            },
+            {
+                "groupName": "singleLayer",
+                "layerCollection": [
+                    {
+                        "type": "WFS",
+                        "featureRequestConf": {
+                            "url": "http://www.umweltdaten.landsh.de/atlas/script/lanuwfs.php?",
+                            "version": "1.1.0",
+                            "typeName": "pegel",
+                            "outputFormat": "GML3",
+                            "srsname": "EPSG:25832"
+                        },
+                        "format": "GML3",
+                        "name": "Pegel Schleswig-Holstein",
+                        "styleRef": "pegelIconStyle_SH",
                         "visible": true
                     }
                 ]

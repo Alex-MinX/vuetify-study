@@ -17,7 +17,7 @@ export default {
         src: 'static/Icons/Pegel_SH.png'
     })
   }),
-  lineStyle: new OlStyle({
+  lineStyleRed: new OlStyle({
     stroke: new OlStroke({
         color: 'red',
         width: 5
@@ -26,7 +26,13 @@ export default {
   lineStyleYellow: new OlStyle({
     stroke: new OlStroke({
         color: 'yellow',
-        width: 3
+        width: 5
     })
+  }),
+  lineStyleDeepskyblue: new OlStyle({
+    stroke: new OlStroke({
+      color: 'deepskyblue',
+      width: 5
+  })
   })
 };

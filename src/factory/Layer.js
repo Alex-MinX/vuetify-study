@@ -189,7 +189,7 @@ export const LayerFactory = {
       url: function(extent) {
         let FRConf = lConf.featureRequestConf;
         let url = FRConf.url;
-        url += 'service=wfs&request=GetFeature&'; // this part is always the same for all the WFS layers
+        url += 'service=WFS&request=GetFeature&'; // this part is always the same for all the WFS layers
         url += FRConf.version ? 'version=' + FRConf.version + '&' : '';
         url += FRConf.typeName ? 'typeName=' + FRConf.typeName + '&' : '';
         url += FRConf.outputFormat ? 'outputFormat=' + FRConf.outputFormat + '&' : '';
@@ -197,7 +197,7 @@ export const LayerFactory = {
         url += FRConf.srsname ? 'srsname=' + FRConf.srsname : '';
         console.log("getFeatureUrl: ", url);
         return url;
-      }
+      },
 
       /* 
        * Medthode 2 : the loader could also be an option, good for pre-processing the features if 
@@ -209,6 +209,7 @@ export const LayerFactory = {
         console.log("lconfcheck: ", lConf);
       }
       */
+     crossOrigin: 'anonymous'
     })
 
     const vectorLayer = new VectorLayer({
