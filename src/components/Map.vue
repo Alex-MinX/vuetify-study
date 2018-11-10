@@ -105,7 +105,7 @@ export default {
             })
             */
             // test2
-            this.$http.get('/static/proxy.php').then(response => {
+            this.$http.get('/static/proxy', {params: {requrl: "www.google.de"}}).then(response => {
                 // success
                 console.log("oh! success!");
             }, response => {
