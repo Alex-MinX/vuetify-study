@@ -276,7 +276,7 @@
                         "format": "GML2",
                         "name": "EarlyDike_Deichlinie_lin_niv_gesamt_2011",
                         "styleRef": "lineStyleYellow",
-                        "visible": true
+                        "visible": false
                     }
                 ]
             },

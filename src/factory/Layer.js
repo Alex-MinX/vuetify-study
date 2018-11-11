@@ -222,7 +222,8 @@ export const LayerFactory = {
         url += FRConf.typeName ? 'typeName=' + FRConf.typeName + '&' : '';
         url += FRConf.outputFormat ? 'outputFormat=' + FRConf.outputFormat + '&' : '';
         url += FRConf.maxFeatures ? 'maxFeatures=' + FRConf.maxFeatures + '&' : '';
-        url += FRConf.srsname ? 'srsname=' + FRConf.srsname : '';
+        url += FRConf.srsname ? 'srsname=' + FRConf.srsname + '&': ''; // this srsname is the crs you want the server to give you
+        url += 'bbox=' + extent.join(',') + ',EPSG:25832';
 
         // 2. Send the HTTP GET request using the vue-resource and proxy.php to go around the Cross Domain problem
         Vue.http.get(
