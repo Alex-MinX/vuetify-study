@@ -15,6 +15,10 @@ import LayerGroup from 'ol/layer/Group';
 import Rotate from 'ol/control/Rotate';
 import { fromLonLat, transform } from 'ol/proj.js';
 
+// select interaction for the WFS features
+import Select from 'ol/interaction/Select';
+import {click, pointerMove } from 'ol/events/condition';
+
 import { LayerFactory } from '../factory/Layer.js';
 
 import proj4 from 'proj4';
@@ -69,7 +73,53 @@ export default {
         console.log('CRS: ', this.map.getView().getProjection());
         MapEventBus.$emit('map-change', )
 
-        // test
+        // ------------------------------------------------------------------------
+
+        // add map interactions here:
+        // for more detailed parameters and settings, see: https://openlayers.org/en/latest/apidoc/module-ol_interaction_Select-Select.html
+        var select = new Select(); // by default single-click
+        var selectPointerMove = new Select({ // select when the mouse moves over features
+            condition: pointerMove,
+            style: ''
+        });
+
+        this.map.addInteraction(select);
+
+        // The select pointer move is used only for the change of the features when the mouse moves over them
+        this.map.addInteraction(selectPointerMove);
+
+        this.map.on('click', function (evt) {
+            console.log("evt.coordinate: ", evt.coordinate);
+            self.map.forEachFeatureAtPixel(evt.pixel, function(feature, layer) {
+                console.log("feature properties @map on click: ", feature.getProperties());
+                // TODO:// deal with how to show the info of the features to the user
+            })
+        });
+
+        // to change the mouse the pointer, indicate the user that the feature icon is clickable
+        this.map.on("pointermove", function (evt) {
+            var hit = this.forEachFeatureAtPixel(evt.pixel, function(feature, layer) {
+                return true;
+            });
+            if (hit) {
+                this.getTargetElement().style.cursor = 'pointer';
+            } else {
+                this.getTargetElement().style.cursor = '';
+            }
+        });
+
+        // here is anthoer way to get feature properties, but with this, the coordinates are not available
+        select.on('select', function(evt) {
+            let featureCollection = evt.target.getFeatures();
+            featureCollection.forEach( function (feature, index) {
+                var Properties = feature.getProperties();
+                console.log("select single-click feature getProperties: ", Properties);
+            })
+        });
+
+        // ------------------------------------------------------------------------
+
+        // tests are all here:
         this.map.getLayers().forEach( function(layer, index) {
             console.log(index + " | " + layer.get("name"));
             if (layer.get("name") == "GK-Waterlevels") {

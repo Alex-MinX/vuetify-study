@@ -215,6 +215,7 @@ export const LayerFactory = {
 
       loader: function(extent, resolution, projection) {
         // 1. build the url
+        // All the parameters for GetFeature request see: https://docs.geoserver.org/stable/en/user/services/wfs/reference.html
         let FRConf = lConf.featureRequestConf;
         let url = FRConf.url;
         url += 'service=WFS&request=GetFeature&'; // this part is always the same for all the WFS layers
@@ -223,9 +224,10 @@ export const LayerFactory = {
         url += FRConf.outputFormat ? 'outputFormat=' + FRConf.outputFormat + '&' : '';
         url += FRConf.maxFeatures ? 'maxFeatures=' + FRConf.maxFeatures + '&' : '';
         url += FRConf.srsname ? 'srsname=' + FRConf.srsname + '&': ''; // this srsname is the crs you want the server to give you
-        url += 'bbox=' + extent.join(',') + ',EPSG:25832';
+        url += 'bbox=' + extent.join(',') + ',EPSG:25832'; // the CRS here is to indicate the server, which CRS you are sending to the server
 
         // 2. Send the HTTP GET request using the vue-resource and proxy.php to go around the Cross Domain problem
+        // The usage of vue-resource to send HTTP request see: https://github.com/pagekit/vue-resource/blob/develop/docs/http.md
         Vue.http.get(
           'http://localhost:8888/proxy.php',
           { params: { requrl: url } }
