@@ -105,12 +105,14 @@ export default {
             })
             */
             // test2
-            this.$http.get('/static/proxy', {params: {requrl: "www.google.de"}}).then(response => {
+            this.$http.get('http://localhost:8888/proxy.php', {params: {requrl: "http://httpbin.org/ip"}}).then(response => {
                 // success
                 console.log("oh! success!");
+                console.log("success response: ", response);
             }, response => {
                 // error
-                console.log("oh! error!");
+                console.log("oh! error!")
+                console.log("error response: ", response);
             });
         }
     }
