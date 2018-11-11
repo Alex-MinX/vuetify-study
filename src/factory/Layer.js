@@ -1,3 +1,10 @@
+import Vue from 'vue'
+import VueResource from 'vue-resource'
+
+Vue.use(VueResource, {
+})
+
+
 import TileLayer from 'ol/layer/Tile';
 import TileWmsSource from 'ol/source/TileWMS';
 import OsmSource from 'ol/source/OSM';
@@ -181,11 +188,12 @@ export const LayerFactory = {
   createVectorLayer (lConf) {
     var vectorSource = new VectorSource({
       format: new this.formatMapping[lConf.format](lConf.formatConfig),
-
+// -----------------------------------------------------------------------------------------------------------
       /*
        * Medthode 1 : if use the url, the format must be set. Or we can use the loader,
        * which has more functions but also more complex
        */
+      /*
       url: function(extent) {
         let FRConf = lConf.featureRequestConf;
         let url = FRConf.url;
@@ -198,18 +206,41 @@ export const LayerFactory = {
         console.log("getFeatureUrl: ", url);
         return url;
       },
-
+      */
+// ------------------------------------------------------------------------------------------------------------
       /* 
        * Medthode 2 : the loader could also be an option, good for pre-processing the features if 
        * necessary
        */
 
-      /*
       loader: function(extent, resolution, projection) {
-        console.log("lconfcheck: ", lConf);
-      }
-      */
-     crossOrigin: 'anonymous'
+        // 1. build the url
+        let FRConf = lConf.featureRequestConf;
+        let url = FRConf.url;
+        url += 'service=WFS&request=GetFeature&'; // this part is always the same for all the WFS layers
+        url += FRConf.version ? 'version=' + FRConf.version + '&' : '';
+        url += FRConf.typeName ? 'typeName=' + FRConf.typeName + '&' : '';
+        url += FRConf.outputFormat ? 'outputFormat=' + FRConf.outputFormat + '&' : '';
+        url += FRConf.maxFeatures ? 'maxFeatures=' + FRConf.maxFeatures + '&' : '';
+        url += FRConf.srsname ? 'srsname=' + FRConf.srsname : '';
+
+        // 2. Send the HTTP GET request using the vue-resource and proxy.php to go around the Cross Domain problem
+        Vue.http.get(
+          'http://localhost:8888/proxy.php',
+          { params: { requrl: url } }
+        ).then(response => {
+            // success
+            // 2.1 read the features and add them to to vector layer
+            vectorSource.addFeatures(
+              vectorSource.getFormat().readFeatures(response.body)
+            );
+        }, response => {
+            // error
+            console.log("oh! error!")
+            console.log("error response: ", response);
+        });
+      },
+      strategy: bboxStrategy
     })
 
     const vectorLayer = new VectorLayer({

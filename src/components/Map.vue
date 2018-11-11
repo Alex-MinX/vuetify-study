@@ -94,17 +94,18 @@ export default {
         },
         getFeatures () {
             // test1
-            //console.log('test: getFeatures');
-            /*
+            console.log('test: getFeatures');
+            
             this.map.getLayers().forEach( function(layer, index) {
-                            console.log(index + " | " + layer.get("name"));
+                console.log(index + " | " + layer.get("name"));
 
-                if (layer.get("name") == "GK-Waterlevels") {
+                if (layer.get("name") == "Pegel Schleswig-Holstein") {
                     console.log("Features: ", layer.getSource().getFeatures());
                 }
             })
-            */
+            
             // test2
+            /*
             this.$http.get('http://localhost:8888/proxy.php', {params: {requrl: "http://httpbin.org/ip"}}).then(response => {
                 // success
                 console.log("oh! success!");
@@ -114,6 +115,7 @@ export default {
                 console.log("oh! error!")
                 console.log("error response: ", response);
             });
+            */
         }
     }
 }

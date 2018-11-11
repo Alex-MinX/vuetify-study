@@ -261,6 +261,25 @@
             }
         ],
         "WFSLayer": [
+            { 
+                "groupName": "singleLayer",
+                "layerCollection": [
+                    {
+                        "type": "WFS",
+                        "featureRequestConf": {
+                            "url": "http://134.130.159.70:8080/geoserver/wfs?",
+                            "version": "1.1.0",
+                            "typeName": "EarlyDike:EarlyDike_Deichlinie_lin_niv_gesamt_2011",
+                            "outputFormat": "GML2",
+                            "srsname": "EPSG:25832"
+                        },
+                        "format": "GML2",
+                        "name": "EarlyDike_Deichlinie_lin_niv_gesamt_2011",
+                        "styleRef": "lineStyleYellow",
+                        "visible": true
+                    }
+                ]
+            },
             {
                 "groupName": "singleLayer",
                 "layerCollection": [
@@ -305,16 +324,16 @@
                     {
                         "type": "WFS",
                         "featureRequestConf": {
-                            "url": "http://www.umweltdaten.landsh.de/atlas/script/lanuwfs.php?",
+                            "url": "http://141.91.173.101/atlas/script/lanuwfs.php?",
                             "version": "1.1.0",
                             "typeName": "pegel",
-                            "outputFormat": "GML3",
+                            "outputFormat": "GML2",
                             "srsname": "EPSG:25832"
                         },
-                        "format": "GML3",
+                        "format": "GML2",
                         "name": "Pegel Schleswig-Holstein",
                         "styleRef": "pegelIconStyle_SH",
-                        "visible": true
+                        "visible": false
                     }
                 ]
             }
