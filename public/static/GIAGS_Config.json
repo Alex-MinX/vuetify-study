@@ -346,10 +346,10 @@
                             "url": "http://134.130.159.64:8080/geoserver/ows?",
                             "version": "1.1.0",
                             "typeName": "rv:ladybug",
-                            "outputFormat": "gml3",
+                            "outputFormat": "application/json",
                             "srsname": "EPSG:25832"
                         },
-                        "format": "GML3",
+                        "format": "GeoJSON",
                         "name": "test",
                         "styleRef": "pegelIconStyle",
                         "visible": true
