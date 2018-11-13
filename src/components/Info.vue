@@ -1,6 +1,9 @@
 <template>
 <div>
-    <p>testtesttesttesttesttesttest</p>
+    <div>
+        {{ featureinfo }}
+
+    </div>
 </div>
 </template>
 
@@ -8,6 +11,7 @@
 
 export default {
     name: 'GIAGS-info',
+    props: ["featureinfo"],
     data () {
         return {
 

@@ -113,8 +113,29 @@ export default {
         select.on('select', function(evt) {
             let featureCollection = evt.target.getFeatures();
             featureCollection.forEach( function (feature, index) {
-                var Properties = feature.getProperties();
-                console.log("select single-click feature getProperties: ", Properties);
+                /*
+                 * we can't directly pass the feature properties to the parent,
+                 * because the feature property object is a cyclic objet from OpenLayers.
+                 * The way to deal with the feature properties here is to take out
+                 * the cyclic part (which is the_geom in Layer GK-Waterlevels). Otherweise it will
+                 * cause error the the feature info won't be passed to parents
+                 */
+
+                let Properties = feature.getProperties();
+                let Keys = feature.getKeys();
+
+                let featureInfoCollection = [];
+                Keys.forEach(function (key) {
+                    let subArray = [];
+                    if (typeof Properties[key] != "object") { // take out the cyclic parts by take out the object
+                        subArray.push(key);
+                        subArray.push(Properties[key]);
+                        featureInfoCollection.push(subArray);
+                    }
+                })
+
+                // emit the feature info to the parent App.vue
+                self.$emit("passfeatureInfoEvt", featureInfoCollection);
             })
         });
 

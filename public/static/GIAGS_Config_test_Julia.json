@@ -295,7 +295,7 @@
                         "format": "GML3",
                         "name": "GK-Waterlevels",
                         "styleRef": "pegelIconStyle",
-                        "visible": true
+                        "visible": false
                     }
                 ]
             },
@@ -334,6 +334,25 @@
                         "name": "Pegel Schleswig-Holstein",
                         "styleRef": "pegelIconStyle_SH",
                         "visible": false
+                    }
+                ]
+            },
+            {
+                "groupName": "singleLayer",
+                "layerCollection": [
+                    {
+                        "type": "WFS",
+                        "featureRequestConf": {
+                            "url": "http://134.130.159.64:8080/geoserver/ows?",
+                            "version": "1.1.0",
+                            "typeName": "rv:ladybug",
+                            "outputFormat": "application/json",
+                            "srsname": "EPSG:25832"
+                        },
+                        "format": "GeoJSON",
+                        "name": "test",
+                        "styleRef": "pegelIconStyle",
+                        "visible": true
                     }
                 ]
             }

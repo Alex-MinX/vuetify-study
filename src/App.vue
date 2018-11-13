@@ -80,8 +80,12 @@
     </v-toolbar>
 
     <v-content>
-      <Map/>
-      <Info/>
+      <Map
+        @passfeatureInfoEvt="PassFeatureInfo($event)"
+      />
+      <Info
+        :featureinfo="featureinfo" 
+      />
     </v-content>
 
     <v-footer :fixed="fixed" app>
@@ -141,11 +145,19 @@ export default {
           selectComponent: 'externLinks',
           active: true
         }
-      ]
+      ],
+      featureinfo: ""
     }
   },
   created () {
 
+  },
+  methods: {
+    PassFeatureInfo: function(data) {
+      console.log("check_featureinfo: ", data);
+      this.featureinfo = data;
+      console.log("this.featureinfo: ", this.featureinfo);
+    }
   }
 }
 </script>
