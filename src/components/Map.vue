@@ -1,7 +1,7 @@
 <template>
 <div>
     <div class="map" id="GIAGS-map"></div>
-    <v-btn @click="getFeatures">getFeatures</v-btn>
+    <!--<v-btn @click="getFeatures">getFeatures</v-btn>-->
 </div>
 </template>
 
@@ -20,6 +20,7 @@ import Select from 'ol/interaction/Select';
 import {click, pointerMove } from 'ol/events/condition';
 
 import { LayerFactory } from '../factory/Layer.js';
+import { InfoPopup } from '../factory/InfoPopup.js';
 
 import proj4 from 'proj4';
 import { proj4_def } from '../proj4_def/GIAGS_proj_defs.js';

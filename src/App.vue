@@ -81,6 +81,7 @@
 
     <v-content>
       <Map/>
+      <Info/>
     </v-content>
 
     <v-footer :fixed="fixed" app>
@@ -91,6 +92,7 @@
 
 <script>
 import Map from './components/Map'
+import Info from './components/Info'
 import basicLayer from './components/layerSelect/basicLayer'
 import WMSLayer from './components/layerSelect/WMSLayer'
 import WFSLayer from './components/layerSelect/WFSLayer'
@@ -101,6 +103,7 @@ export default {
   name: 'App',
   components: {
     Map,
+    Info,
     basicLayer,
     WMSLayer,
     WFSLayer,
