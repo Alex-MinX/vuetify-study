@@ -1,11 +1,11 @@
 <template>
     <div>
-        <div>
+        <!--<div>
             WFS feature diagramm will be presented here
         </div>
 
-        <v-divider></v-divider>
-
+        <v-divider></v-divider>-->
+        <iframe :src="diagramUrl"></iframe>
         <div>
             {{ diagramUrl }}
         </div>
@@ -40,3 +40,10 @@ export default {
     }
 }
 </script>
+
+<style>
+    iframe {
+        width: 100%;
+        height: 400px;
+    }
+</style>

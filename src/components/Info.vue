@@ -2,7 +2,7 @@
 <div>
     <v-tabs
         v-model="active"
-        color="cyan"
+        color="primary"
         dark
         slider-color="yellow"
     >
@@ -25,11 +25,6 @@
                 v-if="featureinfo"
             ></component>
 
-            <!--
-            <v-card flat>
-                <v-card-text>{{ item.selectComponent }}</v-card-text>
-            </v-card>
-            -->
         </v-tab-item>
     </v-tabs>
 </div>
@@ -55,20 +50,17 @@ export default {
                 {
                     "title": "Information",
                     "selectComponent": "featureInfoTab",
-                    "props:": { "featureinfo": "featureinfo" }
-                },
-                {
-                    "title": "Layer",
-                    "selectComponent": "layerInfoTab",
-                    "props:": { "layerinfo": "layerinfo" }
                 },
                 {
                     "title": "Diagram",
                     "selectComponent": "featureDiaTab",
-                    "props:": { "featureinfo": "featureinfo" }
                 },
+                {
+                    "title": "LayerInfo",
+                    "selectComponent": "layerInfoTab",
+                }
             ],
-            active: null,
+            active: 0, // the default selected tab (controled with index)
         }
     },
     created () {
@@ -80,7 +72,7 @@ export default {
 }
 </script>
 
-<style>
+<style sccoped>
 
 </style>
 

@@ -1,10 +1,10 @@
 <template>
     <div>
-        <div>
+        <!--<div>
             WFS feature information will be presented here
         </div>
 
-        <v-divider></v-divider>
+        <v-divider></v-divider>-->
 
         <v-data-table
         :headers="headers"
