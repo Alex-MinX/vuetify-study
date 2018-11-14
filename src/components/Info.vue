@@ -19,7 +19,7 @@
           v-for="(item, index) in categories"
           :key="index"
         >
-            <component 
+            <component
                 :is="item.selectComponent"
                 :featureinfo="featureinfo"
                 v-if="featureinfo"
@@ -37,20 +37,23 @@
 
 <script>
 import featureInfoTab from './tabs/featureInfoTab';
+import featureDiaTab from './tabs/featureDiaTab';
 import layerInfoTab from './tabs/layerInfoTab';
+
 
 export default {
     name: 'GIAGS-info',
     props: ["featureinfo"],
     components: {
         featureInfoTab,
+        featureDiaTab,
         layerInfoTab
     },
     data () {
         return {
             categories: [
                 {
-                    "title": "Feature",
+                    "title": "Information",
                     "selectComponent": "featureInfoTab",
                     "props:": { "featureinfo": "featureinfo" }
                 },
@@ -58,7 +61,12 @@ export default {
                     "title": "Layer",
                     "selectComponent": "layerInfoTab",
                     "props:": { "layerinfo": "layerinfo" }
-                }
+                },
+                {
+                    "title": "Diagram",
+                    "selectComponent": "featureDiaTab",
+                    "props:": { "featureinfo": "featureinfo" }
+                },
             ],
             active: null,
         }
