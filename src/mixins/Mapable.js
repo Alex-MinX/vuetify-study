@@ -11,7 +11,7 @@ export const Mapable = {
     MapEventBus.$on('ol-map-mounted', (olMap) => {
       // make the OL map accesible in this component
       this.map = olMap;
-
+      console.log("go through Mapabale, Mixins");
       if (this.onMapBound) {
         this.onMapBound();
       }

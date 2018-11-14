@@ -1,11 +1,11 @@
 import '@babel/polyfill'
 import Vue from 'vue'
-import './plugins/vuetify'
-import './plugins/vue-resource'
+
 import App from './App.vue'
 
-//import proj4 from 'proj4';
-//import proj4_def from './proj4_def/GIAGS_proj_defs.js';
+import './plugins/vuetify'
+import './plugins/vue-resource'
+import { store } from './store';
 
 require('../node_modules/ol/ol.css');
 
@@ -18,12 +18,9 @@ fetch('static/GIAGS_Config.json')
       Vue.prototype.$GIAGSConfig = GIAGSConfig;
   
       new Vue({
+        store,
         render: h => h(App)
       }).$mount('#app')
   
     });
   })
-
-
-
-

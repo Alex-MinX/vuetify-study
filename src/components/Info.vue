@@ -56,7 +56,7 @@ export default {
                     "selectComponent": "featureDiaTab",
                 },
                 {
-                    "title": "LayerInfo",
+                    "title": "Active layer",
                     "selectComponent": "layerInfoTab",
                 }
             ],
@@ -64,7 +64,7 @@ export default {
         }
     },
     created () {
-        
+        console.log("Info.vue_this.$store_test: ", this.$store);
     },
     methods: {
 

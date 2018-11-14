@@ -42,6 +42,9 @@ export default {
         // Send the event 'ol-map-mounted' with the OL map as payload
         MapEventBus.$emit('ol-map-mounted', this.map);
 
+        // send the map object to vuex for a better state management
+        
+
         // make sure the map won't be strechted strange after being mounted
         window.setTimeout(() => {
             this.map.updateSize();
@@ -72,7 +75,7 @@ export default {
         // add all the layers and layer groups at once
         this.map.getLayers().extend(layers);
         console.log('CRS: ', this.map.getView().getProjection());
-        MapEventBus.$emit('map-change', )
+        //MapEventBus.$emit('map-change', )
 
         // ------------------------------------------------------------------------
 
