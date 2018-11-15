@@ -1,7 +1,16 @@
 <template>
     <div>
-        layer information will be presented here
-        <v-btn @click="getActiveLayer">getActiveLayer</v-btn>
+        <v-list>
+            <v-list-tile-title>
+                Current active Layer(s):
+            </v-list-tile-title>
+            <v-list-tile
+                v-for="layer in activeLayer"
+                :key="layer"
+            >
+                {{ layer }}
+            </v-list-tile>
+        </v-list>
     </div>
 </template>
 
@@ -17,40 +26,22 @@ export default {
     },
     methods: {
         getActiveLayer: function () {
-            console.log("getActiveLayer: ", this.maps);
-            /*
-            let activeLayer = [];
-            this.map.getLayers().forEach(function (layer) {
-                if (layer instanceof LayerGroup) {
-                    // handle layer group here
-                    layer.getLayers().forEach( function (singleLayer, index_1) {
-                        if (singleLayer.getVisible() == true) {
-                            activeLayer.push(singleLayer.get("name"));
-                        }
-                    })
-                } else {
-                    // handle single layer here
-                    if (layer.getVisible() == true) {
-                        activeLayer.push(layer.get("name"));
-                    }
-                }
-            })
-
-            console.log("active layer array: ", activeLayer)
-            */
+            console.log("get_GIAGS_map_active_layer: ", this.activeLayer);
         }
         
     },
     computed: {
-        maps() {
-            console.log("this_check: ", this);
-            return this.$store.state.GIAGS_map;
+        /*
+        map() {
+            return this.$store.getters.get_GIAGS_map;
+        },
+        */
+        activeLayer() {
+            return this.$store.getters.get_GIAGS_map_active_layer;
         }
     },
     created () {
-        console.log("this in created: ", this);
         this.layerInfoConf = this.$GIAGSConfig.mapLayers;
-        //this.getActiveLayer();
     }
 }
 </script>

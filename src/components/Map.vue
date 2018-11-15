@@ -43,7 +43,7 @@ export default {
         MapEventBus.$emit('ol-map-mounted', this.map);
 
         // send the map object to vuex for a better state management
-        
+        this.$store.commit('set_GIAGS_map', this.map);
 
         // make sure the map won't be strechted strange after being mounted
         window.setTimeout(() => {
@@ -96,7 +96,6 @@ export default {
             console.log("evt.coordinate: ", evt.coordinate);
             self.map.forEachFeatureAtPixel(evt.pixel, function(feature, layer) {
                 console.log("feature properties @map on click: ", feature.getProperties());
-                // TODO:// deal with how to show the info of the features to the user
             })
         });
 

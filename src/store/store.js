@@ -16,11 +16,18 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 
+import getters from './getters';
+import mutations from './mutations';
+import actions from './actions';
+
 Vue.use(Vuex, {
 });
 
 export const store = new Vuex.Store({
     state: {
-        GIAGS_map: "test string GIAGS_map"
-    }
+        GIAGS_map: "" // the map will be first set after the OpenLayers map is first mounted
+    },
+    getters: getters,
+    mutations: mutations,
+    actions: actions
 });

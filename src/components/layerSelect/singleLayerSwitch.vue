@@ -91,42 +91,20 @@ export default {
 
         },
         layerSwitch: function () {
-            let self = this;
-            this.map.getLayers().forEach( function (layer, index_0) {
-                if (layer instanceof LayerGroup) {
-                    // handle layer group here
-                    layer.getLayers().forEach( function (singleLayer, index_1) {
-                        //console.log("layer-", index_0, "-", index_1, "-", singleLayer.get("name"), "-", singleLayer.getVisible());
-                        if (singleLayer.get("name") == self.singlelayerinfo.name) {
-                            singleLayer.setVisible(self.checkbox);
-                        }
-                    })
-                } else {
-                    // handle single layer here
-                    //console.log("layer-", index_0, "-", layer.get("name"), "-", layer.getVisible());
-                    if (layer.get("name") == self.singlelayerinfo.name) {
-                        layer.setVisible(self.checkbox);
-                    }
-                }
-            })
+            let payload = {
+                layerName: this.singlelayerinfo.name,
+                status: this.checkbox
+            }
+
+            this.$store.commit('set_layer_visibility', payload);
         },
         opacityChange: function () {
-            var self = this;
-            this.map.getLayers().forEach( function (layer, index_0) {
-                if (layer instanceof LayerGroup) {
-                    // handle layer group here
-                    layer.getLayers().forEach( function (singleLayer, index_1) {
-                        if (singleLayer.get("name") == self.singlelayerinfo.name) {
-                            singleLayer.setOpacity(self.sliderValue / 100);
-                        }
-                    })
-                } else {
-                    // handle single layer here
-                    if (layer.get("name") == self.singlelayerinfo.name) {
-                        layer.setOpacity(self.sliderValue / 100);
-                    }
-                }
-            })
+            let payload = {
+                layerName: this.singlelayerinfo.name,
+                opacity: this.sliderValue / 100
+            }
+
+            this.$store.commit('set_layer_opacity', payload);
         }
     }
 }

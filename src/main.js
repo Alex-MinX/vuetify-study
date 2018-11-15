@@ -5,7 +5,7 @@ import App from './App.vue'
 
 import './plugins/vuetify'
 import './plugins/vue-resource'
-import { store } from './store';
+import { store } from './store/store';
 
 require('../node_modules/ol/ol.css');
 

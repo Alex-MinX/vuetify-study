@@ -29,8 +29,7 @@ export default {
         }
     },
     created () {
-        //this.buildHeader();
-        //this.buildRows();
+
     },
     methods: {
 
