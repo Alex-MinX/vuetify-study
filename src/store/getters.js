@@ -9,26 +9,41 @@ export default {
     get_GIAGS_map_status(state) {
         return state.GIAGS_map_status;
     },
-    get_GIAGS_map_active_layer(state) {
+    get_GIAGS_map_active_layer_info(state) {
         if (state.GIAGS_map) {
             // get_GIAGS_map_active_layer will return the name as array from the current OpenLayers map object
-            let activeLayerArray = [];
+            let activeLayerInfo = [];
             state.GIAGS_map.getLayers().forEach(function (layer) {
                 if (layer instanceof LayerGroup) {
                     // handle layer group here
+                    let groupName = layer.get("name");
                     layer.getLayers().forEach( function (singleLayer) {
                         if (singleLayer.getVisible() == true) {
-                            activeLayerArray.push(singleLayer.get("name"));
+                            let infoCollection = {};
+                            infoCollection.name = singleLayer.get("name");
+                            infoCollection.group = groupName;
+                            infoCollection.opacity = singleLayer.getOpacity();
+                            //infoCollection.url = singleLayer.getSource().getUrl();
+
+                            activeLayerInfo.push(infoCollection);
                         }
                     })
                 } else {
                     // handle single layer here
                     if (layer.getVisible() == true) {
-                        activeLayerArray.push(layer.get("name"));
+                        let infoCollection = {};
+                        infoCollection.name = layer.get("name");
+                        infoCollection.group = "none";
+                        infoCollection.opacity = layer.getOpacity();
+                        //infoCollection.url = layer.getSource().getUrl();
+
+                        activeLayerInfo.push(infoCollection);
                     }
                 }
             })
-            return activeLayerArray;
+
+            console.log("activeLayerInfo: ", activeLayerInfo);
+            return activeLayerInfo;
         } else {
             return null;
         }

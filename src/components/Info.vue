@@ -4,7 +4,7 @@
         v-model="active"
         color="primary"
         dark
-        slider-color="yellow"
+        slider-color="white"
     >
         <v-tab
             v-for="(item, index) in categories"
@@ -59,7 +59,7 @@ export default {
                     "selectComponent": "layerInfoTab",
                 }
             ],
-            active: 0, // the default selected tab (controled with index)
+            active: 2, // the default selected tab (controled with index)
         }
     },
     computed: {

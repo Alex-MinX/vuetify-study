@@ -39,7 +39,7 @@
                     <v-icon color="secondary">opacity</v-icon>
                 </v-btn>
 
-                <span>opacity</span>
+                <span>change opacity</span>
             </v-tooltip>
         </v-list-tile-action>
 
