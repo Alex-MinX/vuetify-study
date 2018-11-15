@@ -113,6 +113,9 @@ export default {
 
         // here is anthoer way to get feature properties, but with this, the coordinates are not available
         select.on('select', function(evt) {
+            self.$store.commit('set_featureInfo', evt);
+
+            /*
             let featureCollection = evt.target.getFeatures();
             featureCollection.forEach( function (feature, index) {
                 /*
@@ -122,7 +125,7 @@ export default {
                  * the cyclic part (which is the_geom in Layer GK-Waterlevels). Otherweise it will
                  * cause error the the feature info won't be passed to parents
                  */
-
+            /*
                 let Properties = feature.getProperties();
                 let Keys = feature.getKeys();
 
@@ -135,10 +138,12 @@ export default {
                         featureInfoCollection.push(subArray);
                     }
                 })
-
+                // save the featureInfo to the store.js
+                
                 // emit the feature info to the parent App.vue
                 self.$emit("passfeatureInfoEvt", featureInfoCollection);
             })
+            */
         });
 
         // ------------------------------------------------------------------------

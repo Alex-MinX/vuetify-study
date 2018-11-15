@@ -21,8 +21,7 @@
         >
             <component
                 :is="item.selectComponent"
-                :featureinfo="featureinfo"
-                v-if="featureinfo"
+                v-if="ifMapMounted"
             ></component>
 
         </v-tab-item>
@@ -38,7 +37,7 @@ import layerInfoTab from './tabs/layerInfoTab';
 
 export default {
     name: 'GIAGS-info',
-    props: ["featureinfo"],
+    //props: ["featureinfo"],
     components: {
         featureInfoTab,
         featureDiaTab,
@@ -63,8 +62,10 @@ export default {
             active: 0, // the default selected tab (controled with index)
         }
     },
-    created () {
-        
+    computed: {
+        ifMapMounted() {
+            return this.$store.getters.get_GIAGS_map_status;
+        }
     },
     methods: {
 

@@ -5,29 +5,38 @@
         </div>
 
         <v-divider></v-divider>-->
-        <iframe :src="diagramUrl"></iframe>
-        <div>
-            {{ diagramUrl }}
+        
+        <iframe
+            :src="featureInfo.diagramUrl"
+            v-if="featureInfo.diagramUrl">
+        </iframe>
+        <div v-else>
+            no diagram available
         </div>
+        
     </div>
 </template>
 
 <script>
 export default {
     name: 'GIAGS-featureDiaTab',
-    props: ["featureinfo"],
+    //props: ["featureinfo"],
     data () {
         return {
 
         }
     },
     created () {
-        console.log("featureinfo: ", this.featureinfo);
+
     },
     methods: {
 
     },
     computed: {
+        featureInfo() {
+            return this.$store.getters.get_GIAGS_featureInfo;
+        }
+        /*
         diagramUrl: function () {
             let url;
             this.featureinfo.forEach(function (ele) {
@@ -37,6 +46,7 @@ export default {
             })
             return url;
         }
+        */
     }
 }
 </script>

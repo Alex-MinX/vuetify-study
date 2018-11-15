@@ -25,10 +25,7 @@ export default {
         }
     },
     methods: {
-        getActiveLayer: function () {
-            console.log("get_GIAGS_map_active_layer: ", this.activeLayer);
-        }
-        
+
     },
     computed: {
         /*

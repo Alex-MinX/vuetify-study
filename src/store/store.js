@@ -25,7 +25,9 @@ Vue.use(Vuex, {
 
 export const store = new Vuex.Store({
     state: {
-        GIAGS_map: "" // the map will be first set after the OpenLayers map is first mounted
+        GIAGS_map: "", // the map will be first set after the OpenLayers map is first mounted
+        GIAGS_featureInfo: "", // the featureInfo will be set after the map click event happened
+        GIAGS_map_status: {mounted: false}
     },
     getters: getters,
     mutations: mutations,

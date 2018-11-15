@@ -4,7 +4,10 @@ import LayerGroup from 'ol/layer/Group';
 export default {
     set_GIAGS_map(state, OlMap) {
         state.GIAGS_map = OlMap;
-        return 
+        state.GIAGS_map_status = true;
+    },
+    set_GIAGS_map_status(state) {
+        state.GIAGS_map_status.mounted = true;
     },
     set_layer_visibility(state, payload) {
         console.log("set_layer_visibility: ", payload);
@@ -40,5 +43,32 @@ export default {
                 }
             }
         })
+    },
+    set_featureInfo(state, evt) {        
+        let featureCollection = evt.target.getFeatures();
+        let featureInfo = [];
+        
+        featureCollection.forEach( function (feature) {
+            /*
+             * we can't directly pass the feature properties to the store.js,
+             * because the feature property object is a cyclic objet from OpenLayers.
+             * The way to deal with the feature properties here is to take out
+             * the cyclic part (e. g. the_geom in Layer GK-Waterlevels). Otherweise it will
+             * cause error.
+             */
+        
+            let Properties = feature.getProperties();
+            let Keys = feature.getKeys();
+
+            Keys.forEach(function (key) {
+                let subArray = [];
+                if (typeof Properties[key] != "object") { // take out the cyclic parts by take out the object
+                    subArray.push(key);
+                    subArray.push(Properties[key]);
+                    featureInfo.push(subArray);
+                }
+            })            
+        })
+        state.GIAGS_featureInfo = featureInfo;
     }
 }
