@@ -98,7 +98,7 @@ export const LayerFactory = {
     }
 
     // create correct layer type
-    if (lConf.type === 'WMS') {
+    if (lConf.type === 'WMS' || lConf.type === 'WMSBase') {
       return this.createWmsLayer(lConf);
     } else if (lConf.type === 'XYZ') {
       return this.createXyzLayer(lConf);
@@ -124,6 +124,7 @@ export const LayerFactory = {
     const layer = new TileLayer({
       preload: Infinity, // Load low-resolution tiles up to preload levels. 0 means no preloading
       name: lConf.name,
+      type: lConf.type,
       lid: lConf.lid,
       //extent: lConf.extent,
       visible: lConf.visible,
@@ -217,7 +218,7 @@ export const LayerFactory = {
         // 1. build the url
         // All the parameters for GetFeature request see: https://docs.geoserver.org/stable/en/user/services/wfs/reference.html
         let FRConf = lConf.featureRequestConf;
-        let url = FRConf.url;
+        let url = lConf.url;
         url += 'service=WFS&request=GetFeature&'; // this part is always the same for all the WFS layers
         url += FRConf.version ? 'version=' + FRConf.version + '&' : '';
         url += FRConf.typeName ? 'typeName=' + FRConf.typeName + '&' : '';
@@ -248,6 +249,7 @@ export const LayerFactory = {
 
     const vectorLayer = new VectorLayer({
       name: lConf.name,
+      type: lConf.type,
       //lid: lConf.lid,
       extent: lConf.extent,
       visible: lConf.visible,

@@ -9,7 +9,7 @@
                 "groupName": "singleLayer",
                 "layerCollection": [
                     {
-                        "type": "WMS",
+                        "type": "WMSBase",
                         "url": "http://ows.terrestris.de/osm/service?",
                         "layers": "OSM-WMS",
                         "visible": true,
@@ -21,7 +21,7 @@
                 "groupName": "singleLayer",
                 "layerCollection": [
                     {
-                        "type": "WMS",
+                        "type": "WMSBase",
                         "url": "http://service.gdi-sh.de/WMS_SH_BDDcol_KF?",
                         "layers": "DTK5col,DTK25col,DTK50col,DTK100col,UEK250,UEK600,UEK1500",
                         "name": "layer_sh",
@@ -36,7 +36,7 @@
                 "groupName": "singleLayer",
                 "layerCollection": [
                     {
-                        "type": "WMS",
+                        "type": "WMSBase",
                         "url": "http://sgx.geodatenzentrum.de/wms_topplus_web_open?",
                         "layers": "web",
                         "name": "TopPlus-Web-Open",
@@ -49,7 +49,7 @@
                 "groupName": "singleLayer",
                 "layerCollection": [
                     {
-                        "type": "WMS",
+                        "type": "WMSBase",
                         "url": "http://sg.geodatenzentrum.de/wms_webatlasde.light?",
                         "layers": "webatlasde.light",
                         "attributions": "attribution_BKG",
@@ -62,7 +62,7 @@
                 "groupName": "singleLayer",
                 "layerCollection": [
                     {
-                        "type": "WMS",
+                        "type": "WMSBase",
                         "url": "http://sg.geodatenzentrum.de/wms_dgm200?",
                         "layers": "schummerung",
                         "attributions": "attribution_BKG",
@@ -267,12 +267,12 @@
                     {
                         "type": "WFS",
                         "featureRequestConf": {
-                            "url": "http://134.130.159.70:8080/geoserver/wfs?",
                             "version": "1.1.0",
                             "typeName": "EarlyDike:EarlyDike_Deichlinie_lin_niv_gesamt_2011",
                             "outputFormat": "GML2",
                             "srsname": "EPSG:25832"
                         },
+                        "url": "http://134.130.159.70:8080/geoserver/wfs?",
                         "format": "GML2",
                         "name": "EarlyDike_Deichlinie_lin_niv_gesamt_2011",
                         "styleRef": "lineStyleYellow",
@@ -286,12 +286,12 @@
                     {
                         "type": "WFS",
                         "featureRequestConf": {
-                            "url": "http://www.pegelonline.wsv.de/webservices/gis/aktuell/wfs?",
                             "version": "1.1.0",
                             "typeName": "gk:waterlevels",
                             "outputFormat": "GML3",
                             "srsname": "EPSG:25832"
                         },
+                        "url": "http://www.pegelonline.wsv.de/webservices/gis/aktuell/wfs?",
                         "format": "GML3",
                         "name": "GK-Waterlevels",
                         "styleRef": "pegelIconStyle",
@@ -305,12 +305,12 @@
                     {
                         "type": "WFS",
                         "featureRequestConf": {
-                            "url": "https://maps.dwd.de/geoserver/wfs?",
                             "version": "1.1.0",
                             "typeName": "dwd:Gewaesser",
                             "outputFormat": "GML3",
                             "srsname": "EPSG:25832"
                         },
+                        "url": "https://maps.dwd.de/geoserver/wfs?",
                         "format": "GML3",
                         "name": "DWD-Gewässer",
                         "styleRef": "lineStyleDeepskyblue",
@@ -324,12 +324,12 @@
                     {
                         "type": "WFS",
                         "featureRequestConf": {
-                            "url": "http://141.91.173.101/atlas/script/lanuwfs.php?",
                             "version": "1.1.0",
                             "typeName": "pegel",
                             "outputFormat": "GML2",
                             "srsname": "EPSG:25832"
                         },
+                        "url": "http://141.91.173.101/atlas/script/lanuwfs.php?",
                         "format": "GML2",
                         "name": "Pegel Schleswig-Holstein",
                         "styleRef": "pegelIconStyle_SH",

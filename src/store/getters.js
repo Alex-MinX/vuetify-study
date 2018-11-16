@@ -21,6 +21,7 @@ export default {
                         if (singleLayer.getVisible() == true) {
                             let infoCollection = {};
                             infoCollection.name = singleLayer.get("name");
+                            infoCollection.type = singleLayer.get("type");
                             infoCollection.group = groupName;
                             infoCollection.opacity = singleLayer.getOpacity();
                             //infoCollection.url = singleLayer.getSource().getUrl();
@@ -33,6 +34,7 @@ export default {
                     if (layer.getVisible() == true) {
                         let infoCollection = {};
                         infoCollection.name = layer.get("name");
+                        infoCollection.type = layer.get("type");
                         infoCollection.group = "none";
                         infoCollection.opacity = layer.getOpacity();
                         //infoCollection.url = layer.getSource().getUrl();
