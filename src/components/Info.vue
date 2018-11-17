@@ -37,7 +37,6 @@ import layerInfoTab from './tabs/layerInfoTab';
 
 export default {
     name: 'GIAGS-info',
-    //props: ["featureinfo"],
     components: {
         featureInfoTab,
         featureDiaTab,
@@ -59,7 +58,7 @@ export default {
                     "selectComponent": "layerInfoTab",
                 }
             ],
-            active: 2, // the default selected tab (controled with index)
+            active: 0, // the default selected tab (controled with index)
         }
     },
     computed: {

@@ -44,7 +44,7 @@ export default {
             }
         })
     },
-    set_featureInfo(state, evt) {        
+    set_featureInfo(state, evt) {
         let featureCollection = evt.target.getFeatures();
         let featureInfo = [];
         
@@ -56,7 +56,10 @@ export default {
              * the cyclic part (e. g. the_geom in Layer GK-Waterlevels). Otherweise it will
              * cause error.
              */
-        
+
+            // push the additional info of coordinate to the selected feature
+            featureInfo.push(["coordinate", evt.mapBrowserEvent.coordinate]);
+            
             let Properties = feature.getProperties();
             let Keys = feature.getKeys();
 
@@ -67,7 +70,7 @@ export default {
                     subArray.push(Properties[key]);
                     featureInfo.push(subArray);
                 }
-            })            
+            })
         })
         state.GIAGS_featureInfo = featureInfo;
     }

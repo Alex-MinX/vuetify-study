@@ -9,25 +9,21 @@
             <v-list-tile-title>{{ layergroupinfo.groupName }}</v-list-tile-title>
         </v-list-tile>
 
-        <!--<v-list-tile
-            v-for="(singlelayer, index) in layergroupinfo.layerCollection"
-            :key="index"
-        >-->
         <template
             v-for="(singlelayer, index) in layergroupinfo.layerCollection"
         >
+
             <singleLayerSwitch
                 :key="index"
                 v-bind:singlelayerinfo="singlelayer"
             ></singleLayerSwitch>
-        <!--</v-list-tile>-->
+            
         </template>
 
     </v-list-group>
 </template>
 
 <script>
-//import { Mapable } from './../../mixins/Mapable.js'
 import singleLayerSwitch from './singleLayerSwitch'
 
 export default {

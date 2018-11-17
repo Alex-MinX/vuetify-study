@@ -13,19 +13,11 @@
             ></v-switch>
         </v-list-tile-action>
 
+        <!-- for the helper class, please see: https://vuetifyjs.com/en/style/typography -->
         <v-list-tile-content
-            class="word-break"
+            class="caption"
         >
             {{ singlelayerinfo.name }}
-            <!--<v-switch
-                v-model="checkbox"
-                :label="singlelayerinfo.name"
-                @click.native="layerSwitch"
-                color="primary"
-            ></v-switch>-->
-
-            <!--<v-list-tile-sub-title v-html="singlelayerinfo.name"></v-list-tile-sub-title>-->
-
         </v-list-tile-content>
 
         <v-list-tile-action>
@@ -61,12 +53,10 @@
 </template>
 
 <script>
-import { Mapable } from './../../mixins/Mapable.js';
 import LayerGroup from 'ol/layer/Group';
 
 export default {
     name: 'GIAGS-singleLayer-Switch',
-    mixins: [Mapable],
     props: ['singlelayerinfo'], // case-insensitive and don't use '-'
     data () {
         return {
@@ -83,13 +73,6 @@ export default {
         this.checkbox = this.singlelayerinfo.visible;
     },
     methods: {
-        /**
-         * This function is executed, after the map is bound (see mixins/Mapable)
-         */
-        // https://github.com/meggsimum/wegue/blob/master/src/components/layerlist/LayerList.vue
-        onMapBound: function () {
-
-        },
         layerSwitch: function () {
             let payload = {
                 layerName: this.singlelayerinfo.name,

@@ -73,19 +73,14 @@
       color="primary"
     >
       <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
-      <!--<v-toolbar-title v-text="title"></v-toolbar-title>-->
       <img src="static/Logos/logo_earlydike.png" alt="Early_Dike_logo" height="65%">
       <v-spacer></v-spacer>
       <v-toolbar-side-icon @click.stop="rightDrawer = !rightDrawer"></v-toolbar-side-icon>
     </v-toolbar>
 
     <v-content>
-      <Map
-        @passfeatureInfoEvt="PassFeatureInfo($event)"
-      />
-      <Info
-        :featureinfo="featureinfo" 
-      />
+      <Map/>
+      <Info/>
     </v-content>
 
     <v-footer :fixed="fixed" app>
@@ -145,19 +140,14 @@ export default {
           selectComponent: 'externLinks',
           active: true
         }
-      ],
-      featureinfo: ""
+      ]
     }
   },
   created () {
 
   },
   methods: {
-    PassFeatureInfo: function(data) {
-      console.log("check_featureinfo: ", data);
-      this.featureinfo = data;
-      console.log("this.featureinfo: ", this.featureinfo);
-    }
+    
   }
 }
 </script>
