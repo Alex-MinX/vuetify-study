@@ -103,11 +103,8 @@ export default {
 
         this.map.on('click', function (evt) {
             console.log("evt.coordinate: ", evt.coordinate);
-            /*
-            self.map.forEachFeatureAtPixel(evt.pixel, function(feature, layer) {
-                console.log("feature properties @map on click: ", feature.getProperties());
-            })
-            */
+            // trigger the getWMSFeatureInfo
+            self.$store.dispatch('set_WMSFeatureInfo', evt);
         });
 
         // to change the mouse the pointer, indicate the user that the feature icon is clickable

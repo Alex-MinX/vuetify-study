@@ -72,5 +72,8 @@ export default {
             })
         })
         state.GIAGS_featureInfo = featureInfo;
+    },
+    set_WMSFeatureInfo(state, WMSFeatureInfo) {
+        state.GIAGS_WMSFeatureInfo = WMSFeatureInfo;
     }
 }

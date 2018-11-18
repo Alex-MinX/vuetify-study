@@ -33,6 +33,7 @@
 import featureInfoTab from './tabs/featureInfoTab';
 import featureDiaTab from './tabs/featureDiaTab';
 import layerInfoTab from './tabs/layerInfoTab';
+import WMSFeatureInfoTab from './tabs/WMSFeatureInfoTab';
 
 import { GlobalEventBus } from "./../GlobalEventBus.js"
 
@@ -41,14 +42,19 @@ export default {
     components: {
         featureInfoTab,
         featureDiaTab,
-        layerInfoTab
+        layerInfoTab,
+        WMSFeatureInfoTab
     },
     data () {
         return {
             categories: [
                 {
-                    "title": "Information",
+                    "title": "WFS-Info",
                     "selectComponent": "featureInfoTab",
+                },
+                {
+                    "title": "WMS-Info",
+                    "selectComponent": "WMSFeatureInfoTab",
                 },
                 {
                     "title": "Diagram",
@@ -58,8 +64,9 @@ export default {
                     "title": "Active layer",
                     "selectComponent": "layerInfoTab",
                 }
+
             ],
-            active: 2, // the default selected tab (controled with index)
+            active: 3, // the default selected tab (controled with index)
         }
     },
     computed: {
@@ -70,7 +77,7 @@ export default {
     created () {
         let self = this;
         GlobalEventBus.$on("featureSelected", function($event) {
-            if (self.active == 2) { // active = 2 means the active layer is currently selected
+            if (self.active == 3 || self.active == 1) { // active = 2 means the active layer is currently selected
                 self.active = 0;
             }
         })

@@ -99,5 +99,8 @@ export default {
             }
             return output;
         }
+    },
+    get_GIAGS_WMSFeatureInfo (state) {
+        return state.GIAGS_WMSFeatureInfo;
     }
 }
