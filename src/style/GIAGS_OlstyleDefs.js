@@ -33,6 +33,54 @@ export default {
     stroke: new OlStroke({
       color: 'deepskyblue',
       width: 5
-  })
-  })
+    })
+  }),
+  featureHighlight: [
+    new OlStyle({
+      stroke: new OlStroke({
+        color: 'white',
+        width: 7
+      })
+    }),
+    new OlStyle({
+      image: new CircleStyle({
+        radius: 7,
+        fill: new OlFill({
+          color: "#FFA726"
+        }),
+        stroke: new OlStroke({
+          color: 'white',
+          width: 2
+        })
+      }),
+      stroke: new OlStroke({
+        color: '#FFA726',
+        width: 5
+      })
+    })
+  ],
+  featureHighlightSelected: [
+    new OlStyle({
+      stroke: new OlStroke({
+        color: 'white',
+        width: 7
+      })
+    }),
+    new OlStyle({
+      image: new CircleStyle({
+        radius: 8,
+        fill: new OlFill({
+          color: "#F44336"
+        }),
+        stroke: new OlStroke({
+          color: 'white',
+          width: 2
+        })
+      }),
+      stroke: new OlStroke({
+        color: "#F44336",
+        width: 5
+      })
+    })
+  ]
 };

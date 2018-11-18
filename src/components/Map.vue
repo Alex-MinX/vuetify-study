@@ -18,6 +18,9 @@ import { fromLonLat, transform } from 'ol/proj.js';
 import Select from 'ol/interaction/Select';
 import { click, pointerMove } from 'ol/events/condition';
 
+// featureStyle for the select
+import OlstyleDefs from './../style/GIAGS_OlstyleDefs.js';
+
 import { LayerFactory } from '../factory/Layer.js';
 import { InfoPopup } from '../factory/InfoPopup.js';
 
@@ -78,16 +81,22 @@ export default {
 
         // add map interactions here:
         // for more detailed parameters and settings, see: https://openlayers.org/en/latest/apidoc/module-ol_interaction_Select-Select.html
-        var select = new Select(); // by default single-click
+        var select = new Select({ // by default single-click
+            style: OlstyleDefs.featureHighlightSelected
+        });
         var selectPointerMove = new Select({ // select when the mouse moves over features
             condition: pointerMove,
-            style: ''
+            style: OlstyleDefs.featureHighlight
         });
 
         this.map.addInteraction(select);
-
         // The select pointer move is used only for the change of the features when the mouse moves over them
         this.map.addInteraction(selectPointerMove);
+
+        // here is anthoer way to get feature properties, but with this, the coordinates are not available
+        select.on('select', function(evt) {
+            self.$store.commit('set_featureInfo', evt);
+        });
 
         this.map.on('click', function (evt) {
             console.log("evt.coordinate: ", evt.coordinate);
@@ -109,12 +118,6 @@ export default {
                 this.getTargetElement().style.cursor = '';
             }
         });
-
-        // here is anthoer way to get feature properties, but with this, the coordinates are not available
-        select.on('select', function(evt) {
-            self.$store.commit('set_featureInfo', evt);
-        });
-
         // ------------------------------------------------------------------------
 
         // tests are all here:

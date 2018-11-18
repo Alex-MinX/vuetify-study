@@ -1,5 +1,10 @@
 <template>
     <div>
+        <!--
+        <v-container
+            style="max-height: 420px"
+            class="scroll-y"
+        >-->
         <v-list two-line>
             <template v-for="(layer, index) in activeLayerInfo">
                 <layerInfoTabEach
@@ -8,6 +13,9 @@
                 ></layerInfoTabEach>
             </template>
         </v-list>
+        <!--
+        </v-container>
+        -->
     </div>
 </template>
 
@@ -37,3 +45,10 @@ export default {
     }
 }
 </script>
+
+<style scoped>
+.v-list {
+  max-height: 420px;
+  overflow-y: auto;
+}
+</style>
