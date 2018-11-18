@@ -10,7 +10,6 @@ export default {
         state.GIAGS_map_status.mounted = true;
     },
     set_layer_visibility(state, payload) {
-        console.log("set_layer_visibility: ", payload);
         state.GIAGS_map.getLayers().forEach( function (layer) {
             if (layer instanceof LayerGroup) {
                 // handle layer group here

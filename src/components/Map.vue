@@ -27,7 +27,7 @@ import { InfoPopup } from '../factory/InfoPopup.js';
 import proj4 from 'proj4';
 import { proj4_def } from '../proj4_def/GIAGS_proj_defs.js';
 
-//import { MapEventBus } from './../MapEventBus.js';
+import { GlobalEventBus } from './../GlobalEventBus.js';
 
 export default {
     name: 'GIAGS-map',
@@ -95,6 +95,9 @@ export default {
 
         // here is anthoer way to get feature properties, but with this, the coordinates are not available
         select.on('select', function(evt) {
+            if (evt.selected.length >= 1) { 
+                GlobalEventBus.$emit("featureSelected", evt.selected.length);
+            }
             self.$store.commit('set_featureInfo', evt);
         });
 

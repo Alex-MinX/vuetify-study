@@ -34,6 +34,7 @@ import featureInfoTab from './tabs/featureInfoTab';
 import featureDiaTab from './tabs/featureDiaTab';
 import layerInfoTab from './tabs/layerInfoTab';
 
+import { GlobalEventBus } from "./../GlobalEventBus.js"
 
 export default {
     name: 'GIAGS-info',
@@ -58,13 +59,21 @@ export default {
                     "selectComponent": "layerInfoTab",
                 }
             ],
-            active: 0, // the default selected tab (controled with index)
+            active: 2, // the default selected tab (controled with index)
         }
     },
     computed: {
         ifMapMounted() {
             return this.$store.getters.get_GIAGS_map_status;
         }
+    },
+    created () {
+        let self = this;
+        GlobalEventBus.$on("featureSelected", function($event) {
+            if (self.active == 2) { // active = 2 means the active layer is currently selected
+                self.active = 0;
+            }
+        })
     },
     methods: {
 
