@@ -16,13 +16,15 @@
                     <v-card
                         color="light-blue lighten-5"
                     >
+                        <!--
                         <v-container
                             :key="index + 'feature'"
                             align-content-center
                             v-html="feature.WMSFeatureInfo"
                         >
                         </v-container>
-
+                        -->
+                            <iframe :srcdoc="feature.WMSFeatureInfo"></iframe>
                         <v-card-title primary-title>
                         <div>
                             <h3 class="headline mb-0">{{ feature.name }}</h3>
@@ -59,6 +61,10 @@ export default {
 </script>
 
 <style scoped>
+    iframe {
+        max-height: 120px;
+        border: inherit;
+    }
     #WMSFeatureInfoRootContainer {
         max-height: 400px;
         overflow-x: auto;

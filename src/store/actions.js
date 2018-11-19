@@ -52,6 +52,7 @@ export default {
                         { params: { requrl: url } }
                     ).then(response => {
                         // success
+                        console.log("response.body: ", response.body);
                         let WMSFeatureInfo = response.body;
                         obj.name = name;
                         obj.WMSFeatureInfo = WMSFeatureInfo;

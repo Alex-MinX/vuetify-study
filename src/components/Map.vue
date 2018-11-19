@@ -97,8 +97,9 @@ export default {
         select.on('select', function(evt) {
             if (evt.selected.length >= 1) { 
                 GlobalEventBus.$emit("WFSfeatureSelected", evt.selected.length);
+                self.$store.commit('set_featureInfo', evt);
             }
-            self.$store.commit('set_featureInfo', evt);
+            
         });
 
         this.map.on('click', function (evt) {
@@ -110,10 +111,11 @@ export default {
 
             } else {
                 GlobalEventBus.$emit("WMSfeatureSelected");
+                // trigger the getWMSFeatureInfo
+                self.$store.dispatch('set_WMSFeatureInfo', evt);
             }
 
-            // trigger the getWMSFeatureInfo
-            self.$store.dispatch('set_WMSFeatureInfo', evt);
+
         });
 
         // to change the mouse the pointer, indicate the user that the feature icon is clickable
