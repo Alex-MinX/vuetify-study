@@ -76,9 +76,17 @@ export default {
     },
     created () {
         let self = this;
-        GlobalEventBus.$on("featureSelected", function($event) {
+        GlobalEventBus.$on("WFSfeatureSelected", function($event) {
+            console.log("WFS feature selected");
             if (self.active == 3 || self.active == 1) { // active = 2 means the active layer is currently selected
                 self.active = 0;
+            }
+        })
+
+        GlobalEventBus.$on("WMSfeatureSelected", function($event) {
+            console.log("WMS feature selected");
+            if (self.active != 1) { // active = 2 means the active layer is currently selected
+                self.active = 1;
             }
         })
     },

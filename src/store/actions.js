@@ -4,11 +4,13 @@ import LayerGroup from 'ol/layer/Group';
 
 export default {
     set_WMSFeatureInfo(context, evt) {
+        console.log("set_WMSFeatureInfo");
         let map = context.state.GIAGS_map;
         let viewResolution = map.getView().getResolution();
 
+        let WMSFeatureInfoArray = [];
         map.getLayers().forEach(function (layer) {
-            let WMSFeatureInfo;
+            let obj = {};
             if (layer instanceof LayerGroup) {
                 layer.getLayers().forEach(function(singleLayer) {
                     if (singleLayer.getVisible() == true && (singleLayer.get('type') == 'WMS' || singleLayer.get('type') == 'WMSBase')) {
@@ -25,13 +27,13 @@ export default {
                             { params: { requrl: url } }
                         ).then(response => {
                             // success
-                            WMSFeatureInfo = response.body;
-                            context.commit('set_WMSFeatureInfo', WMSFeatureInfo);
+                            let WMSFeatureInfo = response.body;
+                            obj.name = name;
+                            obj.WMSFeatureInfo = WMSFeatureInfo;
+                            WMSFeatureInfoArray.push(obj);
                         }, response => {
                             // error
-                            console.log("oh! error!")
                             console.log("error response: ", response);
-                            context.commit('set_WMSFeatureInfo', response);
                         });
                     }
                 })
@@ -50,16 +52,17 @@ export default {
                         { params: { requrl: url } }
                     ).then(response => {
                         // success
-                        WMSFeatureInfo = response.body;
-                        context.commit('set_WMSFeatureInfo', WMSFeatureInfo);
+                        let WMSFeatureInfo = response.body;
+                        obj.name = name;
+                        obj.WMSFeatureInfo = WMSFeatureInfo;
+                        WMSFeatureInfoArray.push(obj);
                     }, response => {
                         // error
-                        console.log("oh! error!")
                         console.log("error response: ", response);
-                        context.commit('set_WMSFeatureInfo', response);
                     });
                 }
             }
         })
+        context.commit('set_WMSFeatureInfo', WMSFeatureInfoArray);
     }
 }

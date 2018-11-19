@@ -96,20 +96,30 @@ export default {
         // here is anthoer way to get feature properties, but with this, the coordinates are not available
         select.on('select', function(evt) {
             if (evt.selected.length >= 1) { 
-                GlobalEventBus.$emit("featureSelected", evt.selected.length);
+                GlobalEventBus.$emit("WFSfeatureSelected", evt.selected.length);
             }
             self.$store.commit('set_featureInfo', evt);
         });
 
         this.map.on('click', function (evt) {
-            console.log("evt.coordinate: ", evt.coordinate);
+            let pixel = this.getEventPixel(evt.originalEvent);
+            let hit = this.forEachFeatureAtPixel(pixel, function() {
+                return true;
+            });
+            if (hit) {
+
+            } else {
+                GlobalEventBus.$emit("WMSfeatureSelected");
+            }
+
             // trigger the getWMSFeatureInfo
             self.$store.dispatch('set_WMSFeatureInfo', evt);
         });
 
         // to change the mouse the pointer, indicate the user that the feature icon is clickable
         this.map.on("pointermove", function (evt) {
-            var hit = this.forEachFeatureAtPixel(evt.pixel, function(feature, layer) {
+            let pixel = this.getEventPixel(evt.originalEvent);
+            let hit = this.forEachFeatureAtPixel(pixel, function() {
                 return true;
             });
             if (hit) {
