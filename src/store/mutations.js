@@ -43,7 +43,7 @@ export default {
             }
         })
     },
-    set_featureInfo(state, evt) {
+    set_WFSFeatureInfo(state, evt) {
         let featureCollection = evt.target.getFeatures();
         let featureInfo = [];
         
@@ -71,7 +71,7 @@ export default {
                 }
             })
         })
-        state.GIAGS_featureInfo = featureInfo;
+        state.GIAGS_WFSFeatureInfo = featureInfo;
     },
     set_WMSFeatureInfo(state, WMSFeatureInfo) {
         state.GIAGS_WMSFeatureInfo = WMSFeatureInfo;

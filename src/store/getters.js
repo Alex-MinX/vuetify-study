@@ -50,7 +50,7 @@ export default {
             return null;
         }
     },
-    get_GIAGS_featureInfo(state) {
+    get_GIAGS_WFSFeatureInfo(state) {
         let headerArray = [
             {
                 text: "Properties",
@@ -64,13 +64,13 @@ export default {
             }
         ]
 
-        if (state.GIAGS_featureInfo) {
+        if (state.GIAGS_WFSFeatureInfo) {
             // represents the header (each column title) in the table
             // the data table need sources, which need to be same as the example
             // see: https://vuetifyjs.com/en/components/data-tables
 
             let rowArray = [];
-            state.GIAGS_featureInfo.forEach(function (ele) {
+            state.GIAGS_WFSFeatureInfo.forEach(function (ele) {
                 let obj = {};
                 obj.name = ele[0];
                 obj.value = ele[1];
@@ -78,7 +78,7 @@ export default {
             })
 
             let url;
-            state.GIAGS_featureInfo.forEach(function (ele) {
+            state.GIAGS_WFSFeatureInfo.forEach(function (ele) {
                 if (ele[0] == "chart_url") {
                     url = ele[1];
                 }

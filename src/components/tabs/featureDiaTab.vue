@@ -26,7 +26,7 @@ export default {
     },
     computed: {
         featureInfo() {
-            return this.$store.getters.get_GIAGS_featureInfo;
+            return this.$store.getters.get_GIAGS_WFSFeatureInfo;
         }
     }
 }

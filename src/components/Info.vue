@@ -30,27 +30,28 @@
 </template>
 
 <script>
-import featureInfoTab from './tabs/featureInfoTab';
+import WFSFeatureInfoTab from './tabs/WFSFeatureInfoTab';
+import WMSFeatureInfoTab from './tabs/WMSFeatureInfoTab';
 import featureDiaTab from './tabs/featureDiaTab';
 import layerInfoTab from './tabs/layerInfoTab';
-import WMSFeatureInfoTab from './tabs/WMSFeatureInfoTab';
 
 import { GlobalEventBus } from "./../GlobalEventBus.js"
 
 export default {
     name: 'GIAGS-info',
     components: {
-        featureInfoTab,
+        WFSFeatureInfoTab,
+        WMSFeatureInfoTab,
         featureDiaTab,
         layerInfoTab,
-        WMSFeatureInfoTab
+        
     },
     data () {
         return {
             categories: [
                 {
                     "title": "WFS-Info",
-                    "selectComponent": "featureInfoTab",
+                    "selectComponent": "WFSFeatureInfoTab",
                 },
                 {
                     "title": "WMS-Info",
