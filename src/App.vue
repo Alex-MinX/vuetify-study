@@ -91,7 +91,7 @@
 
 <script>
 import Map from './components/Map'
-import Info from './components/Info'
+import Info from './components/tabs/Info'
 import basicLayer from './components/layerSelect/basicLayer'
 import WMSLayer from './components/layerSelect/WMSLayer'
 import WFSLayer from './components/layerSelect/WFSLayer'

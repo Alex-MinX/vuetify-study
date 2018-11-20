@@ -30,12 +30,12 @@
 </template>
 
 <script>
-import WFSFeatureInfoTab from './tabs/WFSFeatureInfoTab';
-import WMSFeatureInfoTab from './tabs/WMSFeatureInfoTab';
-import featureDiaTab from './tabs/featureDiaTab';
-import layerInfoTab from './tabs/layerInfoTab';
+import WFSFeatureInfoTab from './WFSFeatureInfoTab';
+import WMSFeatureInfoTab from './WMSFeatureInfoTab';
+import featureDiaTab from './featureDiaTab';
+import layerInfoTab from './layerInfoTab';
 
-import { GlobalEventBus } from "./../GlobalEventBus.js"
+import { GlobalEventBus } from "./../../GlobalEventBus.js"
 
 export default {
     name: 'GIAGS-info',
