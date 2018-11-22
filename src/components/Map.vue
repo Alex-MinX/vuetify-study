@@ -21,7 +21,7 @@ import { click, pointerMove } from 'ol/events/condition';
 // featureStyle for the select
 import OlstyleDefs from './../style/GIAGS_OlstyleDefs.js';
 
-import { LayerFactory } from '../factory/Layer.js';
+import { LayerFactory } from '../factory/GIAGS_layer.js';
 import { InfoPopup } from '../factory/InfoPopup.js';
 
 import proj4 from 'proj4';

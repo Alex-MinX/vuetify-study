@@ -4,7 +4,6 @@ import LayerGroup from 'ol/layer/Group';
 
 export default {
     set_WMSFeatureInfo(context, evt) {
-        console.log("set_WMSFeatureInfo");
         let map = context.state.GIAGS_map;
         let viewResolution = map.getView().getResolution();
 
@@ -52,7 +51,6 @@ export default {
                         { params: { requrl: url } }
                     ).then(response => {
                         // success
-                        console.log("response.body: ", response.body);
                         let WMSFeatureInfo = response.body;
                         obj.name = name;
                         obj.WMSFeatureInfo = WMSFeatureInfo;
