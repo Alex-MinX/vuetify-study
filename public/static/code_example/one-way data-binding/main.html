@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>one-way data-binding</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+</head>
+<body>
+    <div id="app">
+        <div id="demo1">demo1 name</div>
+        <button onclick="changeName1()">change demo1 name with plain js</button>
+        <div id="demo2">{{ name }}</div>
+        <button v-on:click="changeName2">change demo2 name with Vue</button>
+    </div>
+
+    <script src="plainJS.js"></script>
+    <script src="vue.js"></script>
+</body>
+</html>
