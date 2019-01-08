@@ -12,7 +12,7 @@
                         "type": "WMSBase",
                         "url": "http://ows.terrestris.de/osm/service?",
                         "layers": "OSM-WMS",
-                        "visible": true,
+                        "visible": false,
                         "name": "OpenStreetMap"
                     }
                 ]
@@ -28,7 +28,7 @@
                         "format": "image/jpeg",
                         "SRS": "EPSG:4326",
                         "version": "1.1.1",
-                        "visible": false
+                        "visible": true
                     }
                 ]
             },
@@ -295,7 +295,7 @@
                         "format": "GML3",
                         "name": "GK-Waterlevels",
                         "styleRef": "pegelIconStyle",
-                        "visible": true
+                        "visible": false
                     }
                 ]
             },
