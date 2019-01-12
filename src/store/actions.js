@@ -62,6 +62,7 @@ export default {
                 }
             }
         })
+        console.log("set_WMSFeatureInfo: ", WMSFeatureInfoArray);
         context.commit('set_WMSFeatureInfo', WMSFeatureInfoArray);
     }
 }
