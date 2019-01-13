@@ -1,3 +1,10 @@
+/**
+ * Factory, which creates OpenLayers layer/layerGroup instances according to a given config
+ * object.
+ * 
+ * inspired by the projekt Wegue from Meggsimum - https://meggsimum.de/wegue/
+ * modified by Min Xie - xiemin.alex@gmail.com in 2018
+ */
 import Vue from 'vue'
 import VueResource from 'vue-resource'
 
@@ -26,10 +33,6 @@ import {Group as OlGroup} from 'ol/layer.js';
 import OlStyleDefs from '../style/GIAGS_OlstyleDefs.js';
 import {bbox as bboxStrategy} from 'ol/loadingstrategy.js';
 
-/**
- * Factory, which creates OpenLayers layer/layerGroup instances according to a given config
- * object.
- */
 export const LayerFactory = {
 
   /**
